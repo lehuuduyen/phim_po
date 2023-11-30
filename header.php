@@ -117,7 +117,7 @@
                           foreach($categories as $row) {
                                 ?>
                         <li class="nav-item"><a class="nav-link"
-                                href="<?=str_replace('https://www.pornlulu.com','',$row['link'])?>"><i
+                                href="<?=$http.$row['link']?>"><i
                                     class="nav-icon fa fa-circle"></i>
                                 <p><?=$row['name']?></p>
                             </a>

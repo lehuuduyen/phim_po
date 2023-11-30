@@ -215,24 +215,11 @@ require_once __DIR__.'/header.php';
 
                     <nav id="w0">
                         <ul class="pagination">
-                            <li class="page-item prev disabled"><a class="page-link"
-                                    href="<?=$path?>?page=1" data-page="0" tabindex="-1"><span
-                                        aria-hidden="true">«</span>
-                                    <span class="sr-only">Previous</span></a></li>
-                            <li class="page-item <?=($page == 1)?'active':''?>"><a class="page-link"
-                                    href="<?=$path?>?page=1" data-page="0">1</a></li>
-                            <li class="page-item <?=($page == 2)?'active':''?>"><a class="page-link" href="<?=$path?>?page=2"
-                                    data-page="1">2</a></li>
-                            <li class="page-item <?=($page == 3)?'active':''?>"><a class="page-link" href="<?=$path?>?page=3"
-                                    data-page="2">3</a></li>
-                            <li class="page-item <?=($page == 4)?'active':''?>"><a class="page-link" href="<?=$path?>?page=4"
-                                    data-page="3">4</a></li>
-                            <li class="page-item <?=($page == 5)?'active':''?>"><a class="page-link" href="<?=$path?>?page=5"
-                                    data-page="4">5</a></li>
-                            <li class="page-item next disabled"><a class="page-link"
-                                    href="" data-page="1"><span
-                                        aria-hidden="true">»</span>
-                                    <span class="sr-only">Next</span></a></li>
+                           
+                                    <?php for($i=1;$i<= ceil($phimCount / $limit);$i++ ){?>
+                            <li class="page-item <?=($page == $i)?'active':''?>"><a class="page-link"
+                                    href="<?=$path?>?page=<?=$i?>" data-page="0"><?=$i?></a></li>
+                            <?php }?>
                         </ul>
                     </nav>
 

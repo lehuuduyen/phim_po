@@ -21,6 +21,10 @@ if (strpos($path, "/v/") !== false) {
 
   // header("Location: https://video.getlinktraffic.space/?url=".$video[0]);
 }
+$sql = "SELECT name, link,id FROM category";
+$categories = $conn->query($sql);
+
+
 if(strpos($path, "/superadmin/phim") !== false){
   $page = 1;
   $limit = 5;
@@ -30,18 +34,19 @@ if(strpos($path, "/superadmin/phim") !== false){
   }
   $offset =  ($page-1) * $limit;  
 
-  $sqlPhim = "SELECT * FROM movie LIMIT $limit OFFSET $offset ";
+  $sqlPhim = "SELECT * FROM movie ORDER BY id DESC LIMIT $limit OFFSET $offset ";
+  
   $phim = $conn->query($sqlPhim);
   
   $sqlPhimCount = "SELECT COUNT(*) FROM movie ";
   $phimCount = $conn->query($sqlPhimCount)->fetch_row()[0];
 }else{
-  $sql = "SELECT name, link,id FROM category";
-  $categories = $conn->query($sql);
-
+ 
   $sqlCat = "SELECT id,name FROM category WHERE link like '%$path%'LIMIT 1";
-  $cate = $conn->query($sqlCat)->fetch_row();
 
+  
+  $cate = $conn->query($sqlCat)->fetch_row();
+  
   $phim = [];
   if($cate){
     $title = $cate[1];
@@ -52,8 +57,11 @@ if(strpos($path, "/superadmin/phim") !== false){
     }
     $offset =  ($page-1) * $limit;  
     $id = $cate[0];
-    $sqlPhim = "SELECT * FROM movie WHERE category_id = $id LIMIT $limit OFFSET $offset";
+    $sqlPhim = "SELECT * FROM movie WHERE category_id like '%$id%'  LIMIT $limit OFFSET $offset";
     $phim = $conn->query($sqlPhim);
+
+    $sqlPhimCount = "SELECT COUNT(*)  FROM movie WHERE category_id like '%$id%' ";
+    $phimCount = $conn->query($sqlPhimCount)->fetch_row()[0];
   }else{
     $sqlPhim = "SELECT * FROM movie ORDER BY RAND()  LIMIT $limit ";
     $phim = $conn->query($sqlPhim);

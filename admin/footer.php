@@ -36,7 +36,23 @@
 
     <!-- Page level custom scripts -->
     <script src="../js/demo/datatables-demo.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+     function clickEdit(name, id,meta_description,content,image,url_movie,category_id) {
+         $("#id").val(id)
+         $("#name").val(name)
+         $("#meta_description").val(meta_description)
+         $("#content_value").val(content)
+         $("#image").val(image)
+         $("#url_movie").val(url_movie)
+         $('#category_id').val(category_id.split(','));
+         $('#category_id').select2();
 
+     }
+     $('.js-example-basic-multiple,#category_id').select2();
+
+ </script>
 </body>
 
 </html>

@@ -8,14 +8,14 @@
              <table class="table table-bordered" width="100%" >
                  <thead>
                      <tr>
-                         <th style="width: 10%;">Tên danh mục</th>
+                         <!-- <th style="width: 10%;">Tên danh mục</th> -->
                          <th style="width: 10%;">Tên phim</th>
                          <th style="width: 10%;">Meta Description</th>
-                         <th style="width: 30%;">Nội dung phim</th>
+                         <th style="width: 40%;">Nội dung phim</th>
                          <th style="width: 10%;">Link Hình </th>
                          <th style="width: 10%;">Link phim</th>
                          <th style="width: 10%;">Link trang</th>
-                         <th style="width: 10%;"></th>
+                         <th style="width: 10%;"><button style="padding: 3px 20px;" data-toggle="modal" data-target="#exampleModalCreate" class="btn btn-success">Thêm</button></th>
                      </tr>
                  </thead>
 
@@ -28,16 +28,16 @@
                                             $content=$value['content'];
                                             ?>
                      <tr>
-                         <td style="width: 10%;"><?=$value['textcategory']?></td>
+                         <!-- <td style="width: 10%;"><?=$value['textcategory']?></td> -->
                          <td style="width: 10%;"><?=$value['name']?></td>
                          <td style="width: 10%; white-space: pre-wrap;"><?=$value['meta_description']?></td>
-                         <td style="width: 30%; white-space: pre-wrap;"><?=$value['content']?></td>
+                         <td style="width: 40%; white-space: pre-wrap;"><?=$value['content']?></td>
                          <td style="width: 10%;"> <img width="50" height="50" src="<?=$value['image']?>" >  </td>
                          <td style="width: 10%;"><a href="<?=$value['url_movie']?>" target="_blank" ><?=$value['url_movie']?></a></td>
-                         <td style="width: 10%;"><a href="<?=$http.str_replace('https://www.pornlulu.com','',$value['url_movie_origin'])?>" target="_blank" ><?=$http.str_replace('https://www.pornlulu.com','',$value['url_movie_origin'])?></a></td>
+                         <td style="width: 10%;"><a href="<?=$http.$value['url_movie_origin']?>" target="_blank" ><?=$http.$value['url_movie_origin']?></a></td>
                          <td style="width: 10%;">
                              <a data-toggle="modal" data-target="#exampleModal"
-                                 onclick="clickEdit('<?=$name?>',<?=$id?>,`<?=$meta_description?>`,`<?=$content?>`)" class="btn btn-info btn-circle">
+                                 onclick="clickEdit('<?=$name?>',<?=$id?>,`<?=$meta_description?>`,`<?=$content?>`,`<?=$value['image']?>`,`<?=$value['url_movie']?>`,`<?=$value['category_id']?>`)" class="btn btn-info btn-circle">
                                  <i class="fas fa-info-circle"></i>
 
                              </a>
@@ -101,6 +101,59 @@
          </div>
      </div>
  </div>
+ <div class="modal fade" id="exampleModalCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+     <div class="modal-dialog" role="document">
+         <form name="login" action="/superadmin/create/phim" method="post">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <h5 class="modal-title" id="exampleModalLabel">Thêm</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+                 </div>
+                 <div class="modal-body">
+                     <div class="form-group">
+                         <label for="exampleInputEmail1">Tên phim  </label>
+                         <input type="text" class="form-control"  name="name"  >
+                     </div>
+                     <div class="form-group">
+                         <label for="exampleInputEmail1">Link hình  </label>
+                         <input type="text" class="form-control"  name="image"  >
+                     </div>
+                     <div class="form-group">
+                         <label for="exampleInputEmail1">Link phim  </label>
+                         <input type="text" class="form-control"  name="url_movie"  >
+                     </div>
+                     <div class="form-group">
+                         <label for="exampleInputEmail1">Danh mục  </label>
+                         <select class="js-example-basic-multiple form-control"  style="width:100%" name="categories[]" multiple="multiple">
+                            <?php foreach($categories as $category){?>
+                                <option value="<?=$category['id']?>"><?=$category['name']?></option>
+                                <?php }?>
+                        </select>
+                     </div>
+                     
+                     <div class="form-group">
+                         <label for="exampleInputEmail1">Meta Description  </label>
+                         <br/>
+                         <textarea  name="meta_description" cols="50" rows="5"></textarea>
+                     </div>
+                     <div class="form-group">
+                         <label for="exampleInputEmail1">Nội dung phim  </label>
+                         <br/>
+                         <textarea  name="content" cols="50" rows="5"></textarea>
+                     </div>
+                 </div>
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                     <button type="submit" class="btn btn-primary" name="create-phim">Save changes</button>
+                 </div>
+             </div>
+         </form>
+
+     </div>
+ </div>
  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
      <div class="modal-dialog" role="document">
@@ -113,12 +166,29 @@
                      </button>
                  </div>
                  <div class="modal-body">
-                    <input type="hidden" class="form-control" id="id" name="id" aria-describedby="emailHelp">
+                    <input type="hidden" class="form-control" id="id" name="id" >
 
                      <div class="form-group">
                          <label for="exampleInputEmail1">Tên phim  </label>
-                         <input type="text" class="form-control" id="name" name="name"  aria-describedby="emailHelp">
+                         <input type="text" class="form-control" id="name" name="name"  >
                      </div>
+                     <div class="form-group">
+                         <label for="exampleInputEmail1">Link hình  </label>
+                         <input type="text" class="form-control" id="image" name="image"  >
+                     </div>
+                     <div class="form-group">
+                         <label for="exampleInputEmail1">Link phim  </label>
+                         <input type="text" class="form-control" id="url_movie" name="url_movie"  >
+                     </div>
+                     <div class="form-group">
+                         <label for="exampleInputEmail1">Danh mục  </label>
+                         <select class="js-example-basic-multiple form-control" id="category_id" style="width:100%" name="categories[]" multiple="multiple">
+                            <?php foreach($categories as $category){?>
+                                <option value="<?=$category['id']?>"><?=$category['name']?></option>
+                                <?php }?>
+                        </select>
+                     </div>
+                     
                      <div class="form-group">
                          <label for="exampleInputEmail1">Meta Description  </label>
                          <br/>
@@ -140,11 +210,5 @@
      </div>
  </div>
 
- <script>
-     function clickEdit(name, id,meta_description,content) {
-         $("#id").val(id)
-         $("#name").val(name)
-         $("#meta_description").val(meta_description)
-         $("#content_value").val(content)
-     }
- </script>
+
+ 

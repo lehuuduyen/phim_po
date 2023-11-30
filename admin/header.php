@@ -1,22 +1,46 @@
 <?php
 $fullPath = $_SERVER['REQUEST_URI'];
+if (isset($_POST['create-category'])) {
+    $name = $_POST['name'];
+    $time='/cat/'.time();
+    $sql = "INSERT INTO `category` (`name`,`link`) VALUES ('$name','$time')";
+
+    $categories = $conn->query($sql);
+    
+    header('Location: /superadmin');
+}
 if (isset($_POST['edit-category'])) {
     $name = $_POST['name'];
     $id = $_POST['id'];
+
     $sql = "UPDATE category SET name = '$name' WHERE id = $id";
 
     $categories = $conn->query($sql);
-    $sql = "UPDATE movie SET textcategory = '$name' WHERE category_id = $id";
-
-    $categories = $conn->query($sql);
     header('Location: /superadmin');
+}
+if (isset($_POST['create-phim'])) {
+    $name = $_POST['name'];
+    $meta_description = $_POST['meta_description'];
+    $content = $_POST['content'];
+    $image = $_POST['image'];
+    $url_movie = $_POST['url_movie'];
+    $categories = implode(',',$_POST['categories']);
+    $time='/v/'.time();
+
+    $sql = "INSERT INTO `movie` (`category_id`,`name`,`meta_description`,`content`,`image`,`url_movie`,`url_movie_origin`) VALUES ('$categories','$name','$meta_description','$content','$image','$url_movie','$time')";
+    $phimEdit = $conn->query($sql);
+    
+    header('Location: /superadmin/phim');
 }
 if (isset($_POST['edit-phim'])) {
     $name = $_POST['name'];
     $meta_description = $_POST['meta_description'];
     $content = $_POST['content'];
+    $image = $_POST['image'];
+    $url_movie = $_POST['url_movie'];
+    $categories = implode(',',$_POST['categories']);
     $id = $_POST['id'];
-    $sql = "UPDATE movie SET name = '$name' , meta_description = '$meta_description' , content = '$content' WHERE id = $id";
+    $sql = "UPDATE movie SET category_id = '$categories' , name = '$name' , meta_description = '$meta_description' , content = '$content' , image = '$image' , url_movie = '$url_movie' WHERE id = $id";
 
     $phimEdit = $conn->query($sql);
     header('Location: /superadmin/phim');
@@ -31,6 +55,13 @@ if (strpos($fullPath, "/superadmin/category/delete") !== false) {
     $categories = $conn->query($sql);
     header('Location: /superadmin');
 }
+if (strpos($fullPath, "/superadmin/phim/delete") !== false) {
+    $id =  $_GET['id'];
+    $sql = "DELETE FROM movie WHERE id =$id";
+    $categories = $conn->query($sql);
+    header('Location: /superadmin/phim');
+}
+
 
 ?>
 
@@ -67,6 +98,7 @@ if (strpos($fullPath, "/superadmin/category/delete") !== false) {
             white-space: nowrap;
         }
     </style>
+   
 </head>
 
 <body id="page-top">
