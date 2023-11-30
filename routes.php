@@ -48,9 +48,10 @@ if(strpos($path, "/superadmin/phim") !== false){
   $cate = $conn->query($sqlCat)->fetch_row();
   
   $phim = [];
+  $phimCount = 0;
+
   if($cate){
     $title = $cate[1];
-
     $page = 1;
     if(isset($_GET['page'])){
       $page=$_GET['page'];
