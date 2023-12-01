@@ -69,6 +69,7 @@ require_once __DIR__.'/header.php';
                     <strong>
                         <?=$video[1]?>
                     </strong>
+                    <?=$video[2]?>
                     <hr>
                     <strong>
                     相关电影

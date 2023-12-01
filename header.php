@@ -29,9 +29,9 @@
             accurateTrackBounce: true
         });
     </script>
-    <title>國產自拍 - 免費情色成人視頻 - Pornlulu</title>
-    <meta name="keywords" content="國產自拍, 免費情色成人視頻, Pornlulu, 線上無碼, 日本女優，AV視頻">
-    <meta name="description" content="最大的線上無碼情色A片網站，日本AV視頻。本站有百萬高清免費的日本AV視頻全部免費觀看。本站特點就是沒廣告，播放流暢，全部高清。">
+    <title><?=(!empty($title))?$title:""?> Pornlulu</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="<?=(!empty($video))?$video[3]:"最大的線上無碼情色A片網站，日本AV視頻。本站有百萬高清免費的日本AV視頻全部免費觀看。本站特點就是沒廣告，播放流暢，全部高清。"?>">
     <meta name="theme-color" content="#E1E1E1">
     <link href="https://www.pornlulu.com/cat/263" rel="canonical">
     <link href="https://www.pornlulu.com/zh-hans/cat/263" rel="alternative" hreflang="zh-HANS">

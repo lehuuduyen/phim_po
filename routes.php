@@ -14,9 +14,10 @@ if(isset($_GET['page'])){
   $path  = str_replace('?page='.$_GET['page'],'',$fullPath);
 }
 if (strpos($path, "/v/") !== false) {
-  $sqlVideo = "SELECT url_movie,content,meta_description FROM movie WHERE url_movie_origin like '%$path%'LIMIT 1";
+  $sqlVideo = "SELECT url_movie,name,content,meta_description FROM movie WHERE url_movie_origin like '%$path%'LIMIT 1";
   
   $video = $conn->query($sqlVideo)->fetch_row();
+  
   $title = $video[1];
 
   // header("Location: https://video.getlinktraffic.space/?url=".$video[0]);
@@ -68,7 +69,7 @@ if(strpos($path, "/superadmin/phim") !== false){
     $phim = $conn->query($sqlPhim);
   }
 }
-
+ 
 
 
 
