@@ -65,6 +65,10 @@ if(strpos($path, "/superadmin/phim") !== false){
     $sqlPhimCount = "SELECT COUNT(*)  FROM movie WHERE category_id like '%$id%' ";
     $phimCount = $conn->query($sqlPhimCount)->fetch_row()[0];
   }else{
+    $sqlCat = "SELECT id,name FROM category LIMIT 1";
+    $cate = $conn->query($sqlCat)->fetch_row();
+    $title = $cate[1];
+    
     $sqlPhim = "SELECT * FROM movie ORDER BY RAND()  LIMIT $limit ";
     $phim = $conn->query($sqlPhim);
   }

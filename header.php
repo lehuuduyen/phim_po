@@ -141,6 +141,6 @@
                         <ol id="w5" class="mb-2 breadcrumb">
                             <li class="breadcrumb-item"><a href="/">首頁</a></li>
 
-                            <li class="breadcrumb-item"><a href="<?=$path?>"><?=($title)?$title:""?></a></li>
+                            <li class="breadcrumb-item"><a href="<?=$path?>"><?=(isset($title))?$title:""?></a></li>
                         </ol>
                     </nav>
