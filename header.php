@@ -1,5 +1,11 @@
 <html lang="zh-HANT" style="height: auto;">
+<?php
+$imgMeta = $http.'/style/img/logo.png';
+if(isset($video[4])){
+    $imgMeta = $video[4];
+}
 
+?>
 <head>
     <meta name="robots" content="noindex">
 
@@ -15,7 +21,7 @@
     <meta property="og:type" content="article" />
     <meta property="og:title" content="<?=(!empty($title))?$title:"Pornlulu"?>" />
     <meta property="og:description" content="<?=(!empty($video))?$video[3]:"最大的線上無碼情色A片網站，日本AV視頻。本站有百萬高清免費的日本AV視頻全部免費觀看。本站特點就是沒廣告，播放流暢，全部高清。"?>" />
-    <meta property="og:image" content="<?=$http?>/style/img/logo.png" />
+    <meta property="og:image" content="<?=$imgMeta?>" />
     <meta property="og:release_date" content="2023-11-15" />
     <link rel="canonical" href="<?=$fullHttp?>">
 

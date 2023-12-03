@@ -12,7 +12,7 @@ if(isset($_GET['page'])){
   $path  = str_replace('?page='.$_GET['page'],'',$fullPath);
 }
 if (strpos($path, "/v/") !== false) {
-  $sqlVideo = "SELECT url_movie,name,content,meta_description FROM movie WHERE url_movie_origin like '%$path%'LIMIT 1";
+  $sqlVideo = "SELECT url_movie,name,content,meta_description,image FROM movie WHERE url_movie_origin like '%$path%'LIMIT 1";
   
   $video = $conn->query($sqlVideo)->fetch_row();
   
@@ -38,6 +38,21 @@ if(strpos($path, "/superadmin/phim") !== false){
   $phim = $conn->query($sqlPhim);
   
   $sqlPhimCount = "SELECT COUNT(*) FROM movie ";
+  $phimCount = $conn->query($sqlPhimCount)->fetch_row()[0];
+}else if(strpos($path, "/superadmin/blog") !== false){
+  $page = 1;
+  $limit = 5;
+
+  if(isset($_GET['page'])){
+    $page=$_GET['page'];
+  }
+  $offset =  ($page-1) * $limit;  
+
+  $sqlPhim = "SELECT * FROM blog ORDER BY id DESC LIMIT $limit OFFSET $offset ";
+  
+  $phim = $conn->query($sqlPhim);
+  
+  $sqlPhimCount = "SELECT COUNT(*) FROM blog ";
   $phimCount = $conn->query($sqlPhimCount)->fetch_row()[0];
 }else{
  

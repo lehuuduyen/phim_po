@@ -38,6 +38,8 @@
     <script src="../js/demo/datatables-demo.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
+
     <script>
      function clickEdit(name, id,meta_description,content,image,url_movie,category_id) {
          $("#id").val(id)
@@ -51,8 +53,14 @@
 
      }
      $('.js-example-basic-multiple,#category_id').select2();
-
+    
  </script>
+  <script>
+        ClassicEditor.create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 </body>
 
 </html>

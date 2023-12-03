@@ -1,5 +1,7 @@
 <?php
 $fullPath = $_SERVER['REQUEST_URI'];
+
+
 if (isset($_POST['create-category'])) {
     $name = $_POST['name'];
     $time='/cat/'.time();
@@ -21,6 +23,20 @@ if (isset($_POST['edit-category'])) {
 if (isset($_POST['create-phim'])) {
   
     
+    $name = $_POST['name'];
+    $meta_description = $_POST['meta_description'];
+    $content = $_POST['content'];
+    $image = $_POST['image'];
+    $url_movie = $_POST['url_movie'];
+    $categories = implode(',',$_POST['categories']);
+    $time='/v/'.time();
+
+    $sql = "INSERT INTO `movie` (`category_id`,`name`,`meta_description`,`content`,`image`,`url_movie`,`url_movie_origin`) VALUES ('$categories','$name','$meta_description','$content','$image','$url_movie','$time')";
+    $phimCreate = $conn->query($sql);
+  
+    header('Location: /superadmin/phim');
+}
+if (isset($_POST['create-blog'])) {
     $name = $_POST['name'];
     $meta_description = $_POST['meta_description'];
     $content = $_POST['content'];
@@ -123,15 +139,20 @@ if (strpos($fullPath, "/superadmin/phim/delete") !== false) {
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <li class="nav-item <?=($fullPath =='/superadmin')?'active':''?>">
                 <a class="nav-link" href="/superadmin/">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Danh mục</span></a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item <?=($fullPath =='/superadmin/phim')?'active':''?>">
                 <a class="nav-link" href="/superadmin/phim">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Phim</span></a>
+            </li>
+            <li class="nav-item <?=($fullPath =='/superadmin/blog')?'active':''?>">
+                <a class="nav-link" href="/superadmin/blog">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Blog</span></a>
             </li>
 
 

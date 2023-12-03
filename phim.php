@@ -196,8 +196,8 @@ require_once __DIR__.'/header.php';
                                             alt="母與子06-13直播實錄"
                                             data-src="<?=$val['image']?>"
                                             data-error="/imgdef/noimage.webp"></a>
-                                    <div class="imagelabel imagelabel-bottom-right"><span class="badge badge-success"><i
-                                                class="fa fa-eye"></i> 314K</span></div>
+                                    <!-- <div class="imagelabel imagelabel-bottom-right"><span class="badge badge-success"><i
+                                                class="fa fa-eye"></i> 314K</span></div> -->
                                 </div>
                                 <div class="card-body p-2">
                                     <div class="two-lines"><a class="visited"

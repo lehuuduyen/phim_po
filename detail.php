@@ -5,7 +5,14 @@ require_once __DIR__.'/header.php';
             .video-js {
                 width: 100%;
             }
-       
+            .video-description {
+                display: block;
+                padding: 5px 0;
+                font-size: 15px;
+                line-height: 1.5;
+                word-wrap: break-word;
+                font-family: arial,sans-serif;
+            }
         </style>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/5.10.2/alt/video-js-cdn.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/5.10.2/video.js"></script>
@@ -69,7 +76,9 @@ require_once __DIR__.'/header.php';
                     <strong>
                         <?=$video[1]?>
                     </strong>
+                    <div class="video-description">
                     <?=$video[2]?>
+                    </div>
                     <hr>
                     <strong>
                     相关电影
@@ -89,8 +98,8 @@ require_once __DIR__.'/header.php';
                                             alt="母與子06-13直播實錄"
                                             data-src="<?=$val['image']?>"
                                             data-error="/imgdef/noimage.webp"></a>
-                                    <div class="imagelabel imagelabel-bottom-right"><span class="badge badge-success"><i
-                                                class="fa fa-eye"></i> 314K</span></div>
+                                    <!-- <div class="imagelabel imagelabel-bottom-right"><span class="badge badge-success"><i
+                                                class="fa fa-eye"></i> 314K</span></div> -->
                                 </div>
                                 <div class="card-body p-2">
                                     <div class="two-lines"><a class="visited"
