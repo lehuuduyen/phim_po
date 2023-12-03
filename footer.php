@@ -29,12 +29,11 @@
         <!-- /.control-sidebar -->
         <div id="sidebar-overlay"></div>
     </div>
-    <script src="https://www.pornlulu.com/assets/d644671a/jquery.js"></script>
-    <script src="https://www.pornlulu.com/assets/ffbd0bda/yii.js"></script>
-    <script src="https://cdnjs.cloudflare2.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
-    <script src="https://cdnjs.cloudflare2.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
-    <script src="https://www.pornlulu.com/js/main.js?6"></script>
-    <script src="https://www.pornlulu.com/assets/45a3d687/js/bootstrap.bundle.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/adminlte.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/main.js?6"></script>
+    <script src="/js/bootstrap.bundle.js"></script>
     <script>
         jQuery(function ($) {
             $("#sidebar-overlay").click(function(){

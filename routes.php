@@ -2,12 +2,10 @@
 $limit = 12;
 $http= $_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST'];
 
-
 $fullPath =$_SERVER['REQUEST_URI'];
+$fullHttp = $http.$fullPath;
+$title = 'Pornlulu';
 
-if($fullPath  =="/"){
-  $fullPath = '/cat/263';
-}
   $path  =  $fullPath;
 
 if(isset($_GET['page'])){
@@ -52,7 +50,7 @@ if(strpos($path, "/superadmin/phim") !== false){
   $phimCount = 0;
 
   if($cate){
-    $title = $cate[1];
+    $titleCate = $cate[1];
     $page = 1;
     if(isset($_GET['page'])){
       $page=$_GET['page'];
@@ -67,7 +65,7 @@ if(strpos($path, "/superadmin/phim") !== false){
   }else{
     $sqlCat = "SELECT id,name FROM category LIMIT 1";
     $cate = $conn->query($sqlCat)->fetch_row();
-    $title = $cate[1];
+    $titleCate = $cate[1];
     
     $sqlPhim = "SELECT * FROM movie ORDER BY RAND()  LIMIT $limit ";
     $phim = $conn->query($sqlPhim);

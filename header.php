@@ -8,40 +8,23 @@
     <meta name="referrer" content="origin">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1">
-    <meta name="csrf-param" content="_csrf">
-    <meta name="csrf-token"
-        content="VH-6aqb2D65Mozx1nfsUsqxhNEwQ-FTcxNCmwXergoA4KO4r8Jpm3C7FSj3OyEHawAwFJFOvOJapvcOyFPzYyQ==">
-    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script>
-    <script type="text/javascript">
-        (function (m, e, t, r, i, k, a) {
-            m[i] = m[i] || function () {
-                (m[i].a = m[i].a || []).push(arguments)
-            };
-            m[i].l = 1 * new Date();
-            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode
-                .insertBefore(k, a)
-        })
-        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-        ym(89571017, "init", {
-            clickmap: true,
-            trackLinks: true,
-            accurateTrackBounce: true
-        });
-    </script>
-    <title><?=(!empty($title))?$title:""?> Pornlulu</title>
+    
+    <title><?=(!empty($title))?$title:"Pornlulu"?></title>
     <meta name="keywords" content="">
     <meta name="description" content="<?=(!empty($video))?$video[3]:"最大的線上無碼情色A片網站，日本AV視頻。本站有百萬高清免費的日本AV視頻全部免費觀看。本站特點就是沒廣告，播放流暢，全部高清。"?>">
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="<?=(!empty($title))?$title:"Pornlulu"?>" />
+    <meta property="og:description" content="<?=(!empty($video))?$video[3]:"最大的線上無碼情色A片網站，日本AV視頻。本站有百萬高清免費的日本AV視頻全部免費觀看。本站特點就是沒廣告，播放流暢，全部高清。"?>" />
+    <meta property="og:image" content="<?=$http?>/style/img/logo.png" />
+    <meta property="og:release_date" content="2023-11-15" />
+    <link rel="canonical" href="<?=$fullHttp?>">
+
     <meta name="theme-color" content="#E1E1E1">
-    <link href="https://www.pornlulu.com/cat/263" rel="canonical">
-    <link href="https://www.pornlulu.com/zh-hans/cat/263" rel="alternative" hreflang="zh-HANS">
-    <link href="https://www.pornlulu.com/cat/263" rel="alternative" hreflang="zh-HANT">
     <link href="/style/img/logo.png" rel="icon">
     <link href="/style/img/logo.png" rel="apple-touch-icon">
-    <link href="https://www.pornlulu.com/webapp/manifest" rel="manifest">
-    <link href="https://cdnjs.cloudflare2.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css" rel="stylesheet">
+    <link href="/style/css/adminlte.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare2.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://www.pornlulu.com/css/site.css?9.4" rel="stylesheet">
+    <link href="/style/css/site.css?9.4" rel="stylesheet">
     <script src="https://www.googletagmanager.com/gtag/js?id=G-0GGDBPM7QH"></script>
     
 </head>
@@ -50,14 +33,7 @@
     style="height: auto;position: absolute;" cz-shortcut-listen="true">
     <div class="wrapper">
 
-        <div id="fullPageModal"
-            style="position: fixed; width: 100%; height: 100%; background: rgba(255,255,255, 0.93); top: 0; left: 0; display: none; z-index:10000001">
-            <div style="max-width: 320px; margin: auto; text-align: center;" class="py-3">
-                <button type="button" class="btn btn-primary  btn-lg mb-2" onclick="hideFullPage(null)">關閉廣告</button>
-                <img src="https://www.pornlulu.com/images/friend/0/550.webp?1699513531" alt=""
-                    style="max-width:100%;max-height:100%;" onclick="hideFullPage('http://ad.dlxdedm.com/xhz-5/#/')">
-            </div>
-        </div>
+
 
         <script>
             function hideFullPage(url) {
@@ -141,6 +117,6 @@
                         <ol id="w5" class="mb-2 breadcrumb">
                             <li class="breadcrumb-item"><a href="/">首頁</a></li>
 
-                            <li class="breadcrumb-item"><a href="<?=$path?>"><?=(isset($title))?$title:""?></a></li>
+                            <li class="breadcrumb-item"><a href="<?=$path?>"><?=(isset($titleCate))?$titleCate:""?></a></li>
                         </ol>
                     </nav>

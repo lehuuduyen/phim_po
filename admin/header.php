@@ -19,6 +19,8 @@ if (isset($_POST['edit-category'])) {
     header('Location: /superadmin');
 }
 if (isset($_POST['create-phim'])) {
+  
+    
     $name = $_POST['name'];
     $meta_description = $_POST['meta_description'];
     $content = $_POST['content'];
@@ -28,8 +30,8 @@ if (isset($_POST['create-phim'])) {
     $time='/v/'.time();
 
     $sql = "INSERT INTO `movie` (`category_id`,`name`,`meta_description`,`content`,`image`,`url_movie`,`url_movie_origin`) VALUES ('$categories','$name','$meta_description','$content','$image','$url_movie','$time')";
-    $phimEdit = $conn->query($sql);
-    
+    $phimCreate = $conn->query($sql);
+  
     header('Location: /superadmin/phim');
 }
 if (isset($_POST['edit-phim'])) {
