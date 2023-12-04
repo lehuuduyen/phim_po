@@ -40,15 +40,27 @@ if (isset($_POST['create-blog'])) {
     $name = $_POST['name'];
     $meta_description = $_POST['meta_description'];
     $content = $_POST['content'];
-    $image = $_POST['image'];
+    $status = $_POST['status'];
     $url_movie = $_POST['url_movie'];
-    $categories = implode(',',$_POST['categories']);
-    $time='/v/'.time();
+    $image = "";
+    $imagetemp = $_FILES['image']['tmp_name'];
+    $newFile = 'style/img/'.time().$_FILES['image']['name'];
+    $result = move_uploaded_file($imagetemp, $newFile);
+    if(is_uploaded_file($imagetemp)) {
+        if(move_uploaded_file($imagetemp, $newFile)) {
+            $image = $newFile;
+        }
+    }
+    
+    
+    $time='/blog/'.time();
 
-    $sql = "INSERT INTO `movie` (`category_id`,`name`,`meta_description`,`content`,`image`,`url_movie`,`url_movie_origin`) VALUES ('$categories','$name','$meta_description','$content','$image','$url_movie','$time')";
+    $sql = "INSERT INTO `blog` (`status`,`name`,`meta_description`,`content`,`image`,`slug`) VALUES ('$status','$name','$meta_description','$content','$image','$time')";
+   
+    
     $phimCreate = $conn->query($sql);
   
-    header('Location: /superadmin/phim');
+    header('Location: /superadmin/blog');
 }
 if (isset($_POST['edit-phim'])) {
     $name = $_POST['name'];

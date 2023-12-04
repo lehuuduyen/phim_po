@@ -52,6 +52,14 @@
          $('#category_id').select2();
 
      }
+     function clickEditBlog(name, id,meta_description,content,image,url_movie,category_id) {
+         $("#id").val(id)
+         $("#name").val(name)
+         $("#meta_description").val(meta_description)
+         $("#content_value").val(content)
+         $("#image").val(image)
+
+     }
      $('.js-example-basic-multiple,#category_id').select2();
     
  </script>

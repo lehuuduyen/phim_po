@@ -20,6 +20,7 @@
 
                  <tbody>
                      <?php
+                    
                                         foreach($phim as $value){
                                             $id=$value['id'];
                                             $name=$value['name'];
@@ -27,15 +28,14 @@
                                             $content=$value['content'];
                                             ?>
                      <tr>
-                         <!-- <td style="width: 10%;"><?=$value['textcategory']?></td> -->
                          <td style="width: 10%;"><?=$value['name']?></td>
                          <td style="width: 10%; white-space: pre-wrap;"><?=$value['meta_description']?></td>
                          <td style="width: 40%; white-space: pre-wrap;"><?=$value['content']?></td>
                          <td style="width: 10%;"> <img width="50" height="50" src="<?=$value['image']?>" >  </td>
-                         <td style="width: 10%;"><a href="<?=$http.$value['url_movie_origin']?>" target="_blank" ><?=$http.$value['url_movie_origin']?></a></td>
+                         <td style="width: 10%;"><a href="<?=$http.$value['slug']?>" target="_blank" ><?=$http.$value['slug']?></a></td>
                          <td style="width: 10%;">
                              <a data-toggle="modal" data-target="#exampleModal"
-                                 onclick="clickEdit('<?=$name?>',<?=$id?>,`<?=$meta_description?>`,`<?=$content?>`,`<?=$value['image']?>`,`<?=$value['url_movie']?>`,`<?=$value['category_id']?>`)" class="btn btn-info btn-circle">
+                                 onclick="clickEditBlog('<?=$name?>',<?=$id?>,`<?=$meta_description?>`,`<?=$content?>`,`<?=$value['image']?>`,`<?=$value['url_movie']?>`,`<?=$value['category_id']?>`)" class="btn btn-info btn-circle">
                                  <i class="fas fa-info-circle"></i>
 
                              </a>
@@ -102,7 +102,7 @@
  <div class="modal fade" id="exampleModalCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
      <div class="modal-dialog" role="document">
-         <form name="login" action="/superadmin/create/blog" method="post">
+         <form name="login" action="/superadmin/create/blog" enctype="multipart/form-data" method="post">
              <div class="modal-content">
                  <div class="modal-header">
                      <h5 class="modal-title" id="exampleModalLabel">Thêm</h5>
@@ -117,7 +117,7 @@
                      </div>
                      <div class="form-group">
                          <label for="exampleInputEmail1">Link hình  </label>
-                         <input type="file" class="form-control" accept="image/png, image/gif, image/jpeg" name="image"  >
+                         <input type="file" class="form-control" style="padding:0;height:32px" accept="image/png, image/gif, image/jpeg" name="image"  >
                      </div>
                     
                      <div class="form-group">
@@ -126,11 +126,18 @@
                          <textarea  name="meta_description" cols="50" rows="5"></textarea>
                      </div>
                      <div class="form-group">
-                         <label for="exampleInputEmail1">Nội dung phim  </label>
+                         <label for="exampleInputEmail1">Nội dung bài viết  </label>
                          <br/>
-                         <div id="editor" name="content"></div>
+                         <textarea id="editor" name="content"></textarea>
 
                          <!-- <textarea  name="content" cols="50" rows="5"></textarea> -->
+                     </div>
+                     <div class="form-group">
+                         <label for="exampleInputEmail1">Trạng thái  </label>
+                        <select class="form-control" name="status">
+                            <option value="1">Mở</option>
+                            <option value="0">Đóng</option>
+                        </select>
                      </div>
                  </div>
                  <div class="modal-footer">
@@ -156,23 +163,33 @@
                  <div class="modal-body">
                     <input type="hidden" class="form-control" id="id" name="id" >
 
-                     <div class="form-group">
+                    <div class="form-group">
                          <label for="exampleInputEmail1">Tên bài viết  </label>
                          <input type="text" class="form-control" id="name" name="name"  >
                      </div>
                      <div class="form-group">
                          <label for="exampleInputEmail1">Link hình  </label>
-                         <input type="file" class="form-control" accept="image/png, image/gif, image/jpeg" id="image" name="image"  >
+                         <input type="file" class="form-control" id="image" style="padding:0;height:32px" accept="image/png, image/gif, image/jpeg" name="image"  >
                      </div>
+                    
                      <div class="form-group">
                          <label for="exampleInputEmail1">Meta Description  </label>
                          <br/>
-                         <textarea id="meta_description" name="meta_description" cols="50" rows="5"></textarea>
+                         <textarea  name="meta_description" cols="50" id="meta_description" rows="5"></textarea>
                      </div>
                      <div class="form-group">
-                         <label for="exampleInputEmail1">Nội dung phim  </label>
+                         <label for="exampleInputEmail1">Nội dung bài viết  </label>
                          <br/>
-                         <textarea id="content_value" name="content" cols="50" rows="5"></textarea>
+                         <textarea id="editor" name="content"></textarea>
+
+                         <!-- <textarea  name="content" cols="50" rows="5"></textarea> -->
+                     </div>
+                     <div class="form-group">
+                         <label for="exampleInputEmail1">Trạng thái  </label>
+                        <select class="form-control" name="status">
+                            <option value="1">Mở</option>
+                            <option value="0">Đóng</option>
+                        </select>
                      </div>
                  </div>
                  <div class="modal-footer">
