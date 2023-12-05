@@ -7,14 +7,15 @@
          <div class="table-responsive">
              <table class="table table-bordered" width="100%" >
                  <thead>
-                     <tr>
+                     <tr style="text-align: center;">
                          <!-- <th style="width: 10%;">Tên danh mục</th> -->
                          <th style="width: 10%;">Tên bài viết</th>
                          <th style="width: 10%;">Meta Description</th>
-                         <th style="width: 40%;">Nội dung bài viết</th>
+                         <!-- <th style="width: 40%;">Nội dung bài viết</th> -->
                          <th style="width: 10%;">Hình ảnh </th>
+                         <th style="width: 10%;">Trạng thái </th>
                          <th style="width: 10%;">Link trang</th>
-                         <th style="width: 10%;"><button style="padding: 3px 20px;" data-toggle="modal" data-target="#exampleModalCreate" class="btn btn-success">Thêm</button></th>
+                         <th style="width: 10%;text-align: center;"><button style="padding: 3px 20px;" data-toggle="modal" data-target="#exampleModalCreate" class="btn btn-success">Thêm</button></th>
                      </tr>
                  </thead>
 
@@ -26,20 +27,27 @@
                                             $name=$value['name'];
                                             $meta_description=$value['meta_description'];
                                             $content=$value['content'];
+                                            $textStatus = "Đóng";
+                                            $colorStatus = "danger";
+                                            if($value['status']==1){
+                                                $textStatus = "Mở";
+                                                $colorStatus = "success";
+                                            }
                                             ?>
                      <tr>
                          <td style="width: 10%;"><?=$value['name']?></td>
                          <td style="width: 10%; white-space: pre-wrap;"><?=$value['meta_description']?></td>
-                         <td style="width: 40%; white-space: pre-wrap;"><?=$value['content']?></td>
-                         <td style="width: 10%;"> <img width="50" height="50" src="<?=$value['image']?>" >  </td>
+                         <!-- <td style="width: 40%; white-space: pre-wrap;"><?=$value['content']?></td> -->
+                         <td style="width: 10%;"> <img width="50" height="50" src="/<?=$value['image']?>" >  </td>
+                         <td style="width: 10%;text-align:center"> <button type="button" class="btn btn-<?=$colorStatus?>"><?=$textStatus?></button>  </td>
                          <td style="width: 10%;"><a href="<?=$http.$value['slug']?>" target="_blank" ><?=$http.$value['slug']?></a></td>
                          <td style="width: 10%;">
                              <a data-toggle="modal" data-target="#exampleModal"
-                                 onclick="clickEditBlog('<?=$name?>',<?=$id?>,`<?=$meta_description?>`,`<?=$content?>`,`<?=$value['image']?>`,`<?=$value['url_movie']?>`,`<?=$value['category_id']?>`)" class="btn btn-info btn-circle">
+                                 onclick="clickEditBlog(`<?=$name?>`,<?=$id?>,`<?=$meta_description?>`,`<?=urlencode($content)?>`,`<?=$value['image']?>`,`<?=$value['url_movie']?>`)" class="btn btn-info btn-circle">
                                  <i class="fas fa-info-circle"></i>
 
                              </a>
-                             <a href="/superadmin/phim/delete?id=<?=$id?>" class="btn btn-danger btn-circle ">
+                             <a href="/superadmin/blog/delete?id=<?=$id?>" class="btn btn-danger btn-circle ">
                                  <i class="fas fa-trash"></i>
                              </a>
                          </td>
@@ -99,9 +107,9 @@
          </div>
      </div>
  </div>
- <div class="modal fade" id="exampleModalCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+ <div class="modal fade bd-example-modal-lg" id="exampleModalCreate" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
      aria-hidden="true">
-     <div class="modal-dialog" role="document">
+     <div class="modal-dialog modal-lg" role="document">
          <form name="login" action="/superadmin/create/blog" enctype="multipart/form-data" method="post">
              <div class="modal-content">
                  <div class="modal-header">
@@ -149,10 +157,10 @@
 
      </div>
  </div>
- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+ <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
      aria-hidden="true">
-     <div class="modal-dialog" role="document">
-         <form name="login" action="/superadmin/edit/blog" method="post">
+     <div class="modal-dialog modal-lg" role="document">
+         <form name="login" action="/superadmin/edit/blog" enctype="multipart/form-data" method="post">
              <div class="modal-content">
                  <div class="modal-header">
                      <h5 class="modal-title" id="exampleModalLabel">Cập nhật</h5>
@@ -170,17 +178,19 @@
                      <div class="form-group">
                          <label for="exampleInputEmail1">Link hình  </label>
                          <input type="file" class="form-control" id="image" style="padding:0;height:32px" accept="image/png, image/gif, image/jpeg" name="image"  >
+                         <img style="width: 150px;margin: 10px 0;"src="" id="thumbnail"/>
+
                      </div>
                     
                      <div class="form-group">
                          <label for="exampleInputEmail1">Meta Description  </label>
                          <br/>
-                         <textarea  name="meta_description" cols="50" id="meta_description" rows="5"></textarea>
+                         <textarea  name="meta_description" cols="50" id="meta_description"  rows="5"></textarea>
                      </div>
                      <div class="form-group">
                          <label for="exampleInputEmail1">Nội dung bài viết  </label>
                          <br/>
-                         <textarea id="editor" name="content"></textarea>
+                         <textarea id="editor2" name="content"></textarea>
 
                          <!-- <textarea  name="content" cols="50" rows="5"></textarea> -->
                      </div>

@@ -7,7 +7,7 @@
          <div class="table-responsive">
              <table class="table table-bordered" width="100%" >
                  <thead>
-                     <tr>
+                     <tr style="text-align: center;">
                          <!-- <th style="width: 10%;">Tên danh mục</th> -->
                          <th style="width: 10%;">Tên phim</th>
                          <th style="width: 10%;">Meta Description</th>
@@ -15,7 +15,7 @@
                          <th style="width: 10%;">Link Hình </th>
                          <th style="width: 10%;">Link phim</th>
                          <th style="width: 10%;">Link trang</th>
-                         <th style="width: 10%;"><button style="padding: 3px 20px;" data-toggle="modal" data-target="#exampleModalCreate" class="btn btn-success">Thêm</button></th>
+                         <th style="width: 10%;text-align: center;"><button style="padding: 3px 20px;" data-toggle="modal" data-target="#exampleModalCreate" class="btn btn-success">Thêm</button></th>
                      </tr>
                  </thead>
 
@@ -37,7 +37,7 @@
                          <td style="width: 10%;"><a href="<?=$http.$value['url_movie_origin']?>" target="_blank" ><?=$http.$value['url_movie_origin']?></a></td>
                          <td style="width: 10%;">
                              <a data-toggle="modal" data-target="#exampleModal"
-                                 onclick="clickEdit('<?=$name?>',<?=$id?>,`<?=$meta_description?>`,`<?=$content?>`,`<?=$value['image']?>`,`<?=$value['url_movie']?>`,`<?=$value['category_id']?>`)" class="btn btn-info btn-circle">
+                                 onclick="clickEdit('<?=$name?>',<?=$id?>,`<?=$meta_description?>`,`<?=urlencode($content)?>`,`<?=$value['image']?>`,`<?=$value['url_movie']?>`,`<?=$value['category_id']?>`)" class="btn btn-info btn-circle">
                                  <i class="fas fa-info-circle"></i>
 
                              </a>

@@ -4,11 +4,11 @@ $fullPath = $_SERVER['REQUEST_URI'];
 
 if (isset($_POST['create-category'])) {
     $name = $_POST['name'];
-    $time='/cat/'.time();
+    $time = '/cat/' . time();
     $sql = "INSERT INTO `category` (`name`,`link`) VALUES ('$name','$time')";
 
     $categories = $conn->query($sql);
-    
+
     header('Location: /superadmin');
 }
 if (isset($_POST['edit-category'])) {
@@ -21,19 +21,19 @@ if (isset($_POST['edit-category'])) {
     header('Location: /superadmin');
 }
 if (isset($_POST['create-phim'])) {
-  
-    
+
+
     $name = $_POST['name'];
     $meta_description = $_POST['meta_description'];
     $content = $_POST['content'];
     $image = $_POST['image'];
     $url_movie = $_POST['url_movie'];
-    $categories = implode(',',$_POST['categories']);
-    $time='/v/'.time();
+    $categories = implode(',', $_POST['categories']);
+    $time = '/v/' . time();
 
     $sql = "INSERT INTO `movie` (`category_id`,`name`,`meta_description`,`content`,`image`,`url_movie`,`url_movie_origin`) VALUES ('$categories','$name','$meta_description','$content','$image','$url_movie','$time')";
     $phimCreate = $conn->query($sql);
-  
+
     header('Location: /superadmin/phim');
 }
 if (isset($_POST['create-blog'])) {
@@ -44,31 +44,52 @@ if (isset($_POST['create-blog'])) {
     $url_movie = $_POST['url_movie'];
     $image = "";
     $imagetemp = $_FILES['image']['tmp_name'];
-    $newFile = 'style/img/'.time().$_FILES['image']['name'];
+    $newFile = 'style/img/' . time() . $_FILES['image']['name'];
     $result = move_uploaded_file($imagetemp, $newFile);
-    if(is_uploaded_file($imagetemp)) {
-        if(move_uploaded_file($imagetemp, $newFile)) {
-            $image = $newFile;
-        }
+    if ($result) {
+        $image = $newFile;
     }
-    
-    
-    $time='/blog/'.time();
+    $time = '/blog/' . time();
 
     $sql = "INSERT INTO `blog` (`status`,`name`,`meta_description`,`content`,`image`,`slug`) VALUES ('$status','$name','$meta_description','$content','$image','$time')";
-   
-    
     $phimCreate = $conn->query($sql);
-  
+    
     header('Location: /superadmin/blog');
 }
+if (isset($_POST['edit-blog'])) {
+    $name = $_POST['name'];
+    $meta_description = $_POST['meta_description'];
+    $content = $_POST['content'];
+    $status = $_POST['status'];
+    $url_movie = $_POST['url_movie'];
+    $image = "";
+    $id = $_POST['id'];
+    $imagetemp = $_FILES['image']['tmp_name'];
+    $newFile = 'style/img/' . time() . $_FILES['image']['name'];
+    $result = move_uploaded_file($imagetemp, $newFile);
+    if ($result) {
+        $image = $newFile;
+    }
+    if(!empty($image)){
+        $sql = "UPDATE blog SET status = '$status' , name = '$name' , meta_description = '$meta_description' , content = '$content' , image = '$image'  WHERE id = $id";
+
+    }else{
+    $sql = "UPDATE blog SET status = '$status' , name = '$name' , meta_description = '$meta_description' , content = '$content'   WHERE id = $id";
+
+    }
+
+    $phimCreate = $conn->query($sql);
+
+    header('Location: /superadmin/blog');
+}
+
 if (isset($_POST['edit-phim'])) {
     $name = $_POST['name'];
     $meta_description = $_POST['meta_description'];
     $content = $_POST['content'];
     $image = $_POST['image'];
     $url_movie = $_POST['url_movie'];
-    $categories = implode(',',$_POST['categories']);
+    $categories = implode(',', $_POST['categories']);
     $id = $_POST['id'];
     $sql = "UPDATE movie SET category_id = '$categories' , name = '$name' , meta_description = '$meta_description' , content = '$content' , image = '$image' , url_movie = '$url_movie' WHERE id = $id";
 
@@ -91,6 +112,27 @@ if (strpos($fullPath, "/superadmin/phim/delete") !== false) {
     $categories = $conn->query($sql);
     header('Location: /superadmin/phim');
 }
+if (strpos($fullPath, "/superadmin/blog/delete") !== false) {
+    $id =  $_GET['id'];
+    $sql = "DELETE FROM blog WHERE id =$id";
+    $categories = $conn->query($sql);
+    header('Location: /superadmin/blog');
+}
+if($_GET['type']=='FilesUpload'){
+    $imagetemp = $_FILES['upload']['tmp_name'];
+    $newFile = 'style/img/' . time() . $_FILES['upload']['name'];
+    $result = move_uploaded_file($imagetemp, $newFile);
+    if($result){
+        echo json_encode(['uploaded' => true,'url' => $http.'/'.$newFile]);
+
+    }else{
+        echo json_encode(['error' => 'Failed to move uploaded file']);
+    }
+    die;
+
+    
+}
+
 
 
 ?>
@@ -127,8 +169,18 @@ if (strpos($fullPath, "/superadmin/phim/delete") !== false) {
             border-bottom-width: 2px;
             white-space: nowrap;
         }
-    </style>
-   
+
+        .ck-editor__editable_inline {
+            min-height: 300px;
+        }
+        textarea{
+            width: 100%;
+        }
+</style>
+<link href="
+https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-clipboard@40.1.0/theme/clipboard.min.css
+" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -151,17 +203,17 @@ if (strpos($fullPath, "/superadmin/phim/delete") !== false) {
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item <?=($fullPath =='/superadmin')?'active':''?>">
+            <li class="nav-item <?= ($fullPath == '/superadmin') ? 'active' : '' ?>">
                 <a class="nav-link" href="/superadmin/">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Danh mục</span></a>
             </li>
-            <li class="nav-item <?=($fullPath =='/superadmin/phim')?'active':''?>">
+            <li class="nav-item <?= ($fullPath == '/superadmin/phim') ? 'active' : '' ?>">
                 <a class="nav-link" href="/superadmin/phim">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Phim</span></a>
             </li>
-            <li class="nav-item <?=($fullPath =='/superadmin/blog')?'active':''?>">
+            <li class="nav-item <?= ($fullPath == '/superadmin/blog') ? 'active' : '' ?>">
                 <a class="nav-link" href="/superadmin/blog">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Blog</span></a>

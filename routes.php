@@ -20,6 +20,19 @@ if (strpos($path, "/v/") !== false) {
 
   // header("Location: https://video.getlinktraffic.space/?url=".$video[0]);
 }
+if (strpos($path, "/blog/") !== false) {
+  $sqlVideo = "SELECT id,name,content,meta_description,image FROM blog WHERE slug like '%$path%' AND status = 1 LIMIT 1";
+  
+  $video = $conn->query($sqlVideo)->fetch_row();
+  $title = $video[1];
+  $fullImg= $http.'/'.$video[4];
+  $rand = rand(100,10000);
+  $schema = '<script ></script>';
+ var_dump( $schema);
+  die;
+  
+  // header("Location: https://video.getlinktraffic.space/?url=".$video[0]);
+}
 $sql = "SELECT name, link,id FROM category";
 $categories = $conn->query($sql);
 
@@ -77,6 +90,11 @@ if(strpos($path, "/superadmin/phim") !== false){
 
     $sqlPhimCount = "SELECT COUNT(*)  FROM movie WHERE category_id like '%$id%' ";
     $phimCount = $conn->query($sqlPhimCount)->fetch_row()[0];
+  }else if (strpos($path, "/blog") !== false) {
+    $sqlPhim = "SELECT * FROM blog ORDER BY RAND()  LIMIT $limit ";
+    $phim = $conn->query($sqlPhim);
+    
+    // header("Location: https://video.getlinktraffic.space/?url=".$video[0]);
   }else{
     $sqlCat = "SELECT id,name FROM category LIMIT 1";
     $cate = $conn->query($sqlCat)->fetch_row();

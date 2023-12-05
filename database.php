@@ -1,12 +1,12 @@
 <?php 
-// $servername = "localhost";
-// $username = "root";
-// $password = "";
-// $dbname = "movie";
-$servername = "web-mysql";
+$servername = "localhost";
 $username = "root";
-$password = "admin";
+$password = "";
 $dbname = "movie2";
+// $servername = "web-mysql";
+// $username = "root";
+// $password = "admin";
+// $dbname = "phim";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

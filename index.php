@@ -9,9 +9,6 @@ require_once __DIR__.'/routes.php';
 
 if (strpos($path, "/v/") !== false) {
     require_once __DIR__.'/detail.php';
-}else if(isset($_SESSION['login'])&&strpos($path, "/superadmin") !== false){
-    require_once __DIR__.'/admin/admin.php';
-
 }else if(strpos($path, "/superadmin") !== false){
     
     if(isset($_POST['login'])){
@@ -28,6 +25,11 @@ if (strpos($path, "/v/") !== false) {
     }else{
     require_once __DIR__.'/admin/admin.php';
     }
+}else if(strpos($path, "/blog/") !== false){
+    require_once __DIR__.'/blogDetail.php';
+}else if(isset($_SESSION['login'])&&strpos($path, "/superadmin") !== false){
+    require_once __DIR__.'/admin/admin.php';
+
 }else{
     require_once __DIR__.'/phim.php';
   }
