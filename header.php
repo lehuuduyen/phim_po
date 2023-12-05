@@ -41,22 +41,7 @@ if(isset($video[4])){
 
 
 
-        <script>
-            function hideFullPage(url) {
-                var warningDom = document.getElementById('fullPageModal');
-                warningDom.parentNode.removeChild(warningDom);
-                localStorage.setItem('fullPageModal', new Date().getTime());
-                if (url != null) {
-                    window.open(url);
-                }
-            }
-            if (document.referrer.includes(location.host)) {
-                var hideTime = localStorage.getItem('fullPageModal') || 0;
-                if (new Date().getTime() - hideTime > 60 * 5 * 1000) {
-                    document.getElementById('fullPageModal').style.display = 'block';
-                }
-            }
-        </script>
+   
         <div class="main-header auto-hide-show" style="">
             <div class="container-fluid " style="background:#000">
 
