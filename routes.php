@@ -111,10 +111,14 @@ if (strpos($path, "/superadmin/phim") !== false) {
     if (isset($_GET['page'])) {
       $page = $_GET['page'];
     }
+   
+    
     $offset =  ($page - 1) * $limit;
     $id = $cate[0];
     $sqlPhim = "SELECT * FROM movie WHERE category_id = $id LIMIT $limit OFFSET $offset";
     $phim = $conn->query($sqlPhim);
+    $sqlPhimCount = "SELECT COUNT(*)  FROM movie WHERE category_id = $id";
+    $phimCount = $conn->query($sqlPhimCount)->fetch_row()[0];
   }else if (strpos($path, "/blog") !== false) {
     $limit = 8;
 
