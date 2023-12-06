@@ -150,7 +150,7 @@ require_once __DIR__ . '/header.php';
     </script>
 </form>
 
-<!-- <div class="row no-gutters m-0">
+<div class="row no-gutters m-0">
                         <div class="col-12 col-lg-6 col-xl-4 text-center" style="padding-right:2px;padding-bottom:3px">
                             <a href="http://26se.cc" target="_blank"><img
                                     src="https://www.pornlulu.com/images/friend/0/594.webp?1699605531" alt=""
@@ -175,7 +175,7 @@ require_once __DIR__ . '/header.php';
                             <a href="https://wdcwzhxtz2.2tzwdcwzhx.com/3434/tt79/index.html" target="_blank"><img
                                     src="https://www.pornlulu.com/images/friend/0/561.webp?1695459388" alt=""
                                     style="max-width:100%"></a></div>
-                    </div> -->
+                    </div>
 
 <div class="row pl-2 pr-2 mb-2" id="videos">
     <?php
