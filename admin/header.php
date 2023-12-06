@@ -31,7 +31,58 @@ if (strpos($fullPath, "/superadmin/category/delete") !== false) {
     $categories = $conn->query($sql);
     header('Location: /superadmin');
 }
+if (isset($_POST['create-blog'])) {
+    $name = $_POST['name'];
+    $meta_description = $_POST['meta_description'];
+    $content = $_POST['content'];
+    $status = $_POST['status'];
+    $url_movie = $_POST['url_movie'];
+    $image = "";
+    $imagetemp = $_FILES['image']['tmp_name'];
+    $newFile = 'style/img/' . time() . $_FILES['image']['name'];
+    $result = move_uploaded_file($imagetemp, $newFile);
+    if ($result) {
+        $image = $newFile;
+    }
+    $time = '/blog/' . time();
 
+    $sql = "INSERT INTO `blog` (`status`,`name`,`meta_description`,`content`,`image`,`slug`) VALUES ('$status','$name','$meta_description','$content','$image','$time')";
+    $phimCreate = $conn->query($sql);
+    
+    header('Location: /superadmin/blog');
+}
+if (isset($_POST['edit-blog'])) {
+    $name = $_POST['name'];
+    $meta_description = $_POST['meta_description'];
+    $content = $_POST['content'];
+    $status = $_POST['status'];
+    $url_movie = $_POST['url_movie'];
+    $image = "";
+    $id = $_POST['id'];
+    $imagetemp = $_FILES['image']['tmp_name'];
+    $newFile = 'style/img/' . time() . $_FILES['image']['name'];
+    $result = move_uploaded_file($imagetemp, $newFile);
+    if ($result) {
+        $image = $newFile;
+    }
+    if(!empty($image)){
+        $sql = "UPDATE blog SET status = '$status' , name = '$name' , meta_description = '$meta_description' , content = '$content' , image = '$image'  WHERE id = $id";
+
+    }else{
+    $sql = "UPDATE blog SET status = '$status' , name = '$name' , meta_description = '$meta_description' , content = '$content'   WHERE id = $id";
+
+    }
+
+    $phimCreate = $conn->query($sql);
+
+    header('Location: /superadmin/blog');
+}
+if (strpos($fullPath, "/superadmin/blog/delete") !== false) {
+    $id =  $_GET['id'];
+    $sql = "DELETE FROM blog WHERE id =$id";
+    $categories = $conn->query($sql);
+    header('Location: /superadmin/blog');
+}
 ?>
 
 <html lang="en">
@@ -89,17 +140,21 @@ if (strpos($fullPath, "/superadmin/category/delete") !== false) {
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <li class="nav-item <?= ($fullPath == '/superadmin') ? 'active' : '' ?>">
                 <a class="nav-link" href="/superadmin/">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Danh mục</span></a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item <?= ($fullPath == '/superadmin/phim') ? 'active' : '' ?>">
                 <a class="nav-link" href="/superadmin/phim">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Phim</span></a>
             </li>
-
+            <li class="nav-item <?= ($fullPath == '/superadmin/blog') ? 'active' : '' ?>">
+                <a class="nav-link" href="/superadmin/blog">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Blog</span></a>
+            </li>
 
 
         </ul>

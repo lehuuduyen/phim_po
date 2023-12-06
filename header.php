@@ -29,20 +29,15 @@
             accurateTrackBounce: true
         });
     </script>
-    <title>國產自拍 - 免費情色成人視頻 - Pornlulu</title>
-    <meta name="keywords" content="國產自拍, 免費情色成人視頻, Pornlulu, 線上無碼, 日本女優，AV視頻">
-    <meta name="description" content="最大的線上無碼情色A片網站，日本AV視頻。本站有百萬高清免費的日本AV視頻全部免費觀看。本站特點就是沒廣告，播放流暢，全部高清。">
-    <meta name="theme-color" content="#E1E1E1">
-    <link href="https://www.pornlulu.com/cat/263" rel="canonical">
-    <link href="https://www.pornlulu.com/zh-hans/cat/263" rel="alternative" hreflang="zh-HANS">
-    <link href="https://www.pornlulu.com/cat/263" rel="alternative" hreflang="zh-HANT">
-    <link href="/style/img/logo.png" rel="icon">
-    <link href="/style/img/logo.png" rel="apple-touch-icon">
-    <link href="https://www.pornlulu.com/webapp/manifest" rel="manifest">
-    <link href="https://cdnjs.cloudflare2.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare2.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://www.pornlulu.com/css/site.css?9.4" rel="stylesheet">
-    <script src="https://www.googletagmanager.com/gtag/js?id=G-0GGDBPM7QH"></script>
+    <title><?=(!empty($title))?$title:"Pornlulu"?></title>
+    <meta name="keywords" content="">
+    <meta name="description" content="<?=(!empty($video))?$video[3]:"最大的線上無碼情色A片網站，日本AV視頻。本站有百萬高清免費的日本AV視頻全部免費觀看。本站特點就是沒廣告，播放流暢，全部高清。"?>">
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="<?=(!empty($title))?$title:"Pornlulu"?>" />
+    <meta property="og:description" content="<?=(!empty($video))?$video[3]:"最大的線上無碼情色A片網站，日本AV視頻。本站有百萬高清免費的日本AV視頻全部免費觀看。本站特點就是沒廣告，播放流暢，全部高清。"?>" />
+    <meta property="og:image" content="<?=$imgMeta?>" />
+    <meta property="og:release_date" content="2023-11-15" />
+    <link rel="canonical" href="<?=$fullHttp?>">
     
 </head>
 

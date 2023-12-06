@@ -27,6 +27,10 @@ if (strpos($path, "/v/") !== false) {
     }else{
     require_once __DIR__.'/admin/admin.php';
     }
+}else if(strpos($path, "/list_blog") !== false){
+    require_once __DIR__.'/blog.php';
+}else if(strpos($path, "/blog/") !== false){
+    require_once __DIR__.'/blogDetail.php';
 }else{
     require_once __DIR__.'/phim.php';
   }

@@ -112,6 +112,8 @@ require_once __DIR__.'/header.php';
        
         <?php
 require_once __DIR__.'/footer.php';
+echo   $schema ;
+
         ?>
          <script>
             $("#video").html("<source src='"+ $("#url").val() +"' type='application/x-mpegURL'>");

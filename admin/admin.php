@@ -17,6 +17,9 @@ require_once __DIR__.'/header.php';
                 if(strpos($path, "/superadmin/phim") !== false){
                     require_once __DIR__.'/phim/list.php';
                 }
+                if(strpos($path, "/superadmin/blog") !== false){
+                    require_once __DIR__.'/blog/list.php';
+                }
                 ?>
                    
                 </div>
