@@ -38,10 +38,6 @@ if(isset($video[4])){
 <body data-root="/" class="sidebar-mini layout-fixed layout-navbar-fixed sidebar-closed sidebar-collapse"
     style="height: auto;position: absolute;" cz-shortcut-listen="true">
     <div class="wrapper">
-
-
-
-   
         <div class="main-header auto-hide-show" style="">
             <div class="container-fluid " style="background:#000">
 
@@ -57,6 +53,9 @@ if(isset($video[4])){
 
                 <div class="d-none d-md-block" style="height: 40px; overflow: hidden">
                     <ul id="w1" class="navbar-nav mr-auto links nav">
+                        <li class="nav-item"><a class="nav-link"
+                                href="/list_blog"
+                                rel="nofollow" target="_blank">Blog</a></li>
                         <li class="nav-item"><a class="nav-link"
                                 href="https://go.bbrdbr.com/?userId=5a1df9435cc16ffadd407e46bd997ea39c05cfea3c40428a9975b085cafee25f"
                                 rel="nofollow" target="_blank">裸聊美女主播</a></li>

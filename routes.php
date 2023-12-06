@@ -46,6 +46,7 @@ if (strpos($path, "/blog/") !== false) {
 
   $video = $conn->query($sqlVideo)->fetch_row();
   $title = $video[1];
+  $titleCate = $video[1];
   $fullImg = $http . '/' . $video[4];
   $rand = rand(100, 10000);
   $schema = "<script type='application/ld+json'>
@@ -128,6 +129,22 @@ if (strpos($path, "/superadmin/phim") !== false) {
   } else if (strpos($path, "/blog") !== false) {
     $sqlPhim = "SELECT * FROM blog ORDER BY RAND()  LIMIT $limit ";
     $phim = $conn->query($sqlPhim);
+
+    // header("Location: https://video.getlinktraffic.space/?url=".$video[0]);
+  } else if (strpos($path, "/list_blog") !== false) {
+    $limit = 8;
+    $titleCate = "";
+    $page = 1;
+    if (isset($_GET['page'])) {
+      $page = $_GET['page'];
+    }
+    $offset =  ($page - 1) * $limit;
+    $id = $cate[0];
+    $sqlPhim = "SELECT * FROM blog  LIMIT $limit OFFSET $offset";
+    $phim = $conn->query($sqlPhim);
+
+    $sqlPhimCount = "SELECT COUNT(*)  FROM blog ";
+    $phimCount = $conn->query($sqlPhimCount)->fetch_row()[0];
 
     // header("Location: https://video.getlinktraffic.space/?url=".$video[0]);
   } else {

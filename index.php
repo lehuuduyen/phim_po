@@ -10,7 +10,6 @@ require_once __DIR__.'/routes.php';
 if (strpos($path, "/v/") !== false) {
     require_once __DIR__.'/detail.php';
 }else if(strpos($path, "/superadmin") !== false){
-    
     if(isset($_POST['login'])){
         $username=$_POST['username'];
         $password=$_POST['password'];
@@ -25,6 +24,8 @@ if (strpos($path, "/v/") !== false) {
     }else{
     require_once __DIR__.'/admin/admin.php';
     }
+}else if(strpos($path, "/list_blog") !== false){
+    require_once __DIR__.'/blog.php';
 }else if(strpos($path, "/blog/") !== false){
     require_once __DIR__.'/blogDetail.php';
 }else if(isset($_SESSION['login'])&&strpos($path, "/superadmin") !== false){

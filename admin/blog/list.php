@@ -60,39 +60,39 @@
              <nav aria-label="...">
   <ul class="pagination">
     <li class="page-item <?=($page <= 1)?"disabled":""?> ">
-      <a class="page-link" href="/superadmin/phim?page=<?=$page - 1?>" tabindex="-1">Previous</a>
+      <a class="page-link" href="/superadmin/blog?page=<?=$page - 1?>" tabindex="-1">Previous</a>
     </li>
     <?php for($i=1;$i<= ceil($phimCount / $limit);$i++ ){
         if($page == $i){
             ?>
 
             <li class="page-item active">
-                <a class="page-link" href="/superadmin/phim?page=<?=$i?>"><?=$i?> <span class="sr-only">(current)</span></a>
+                <a class="page-link" href="/superadmin/blog?page=<?=$i?>"><?=$i?> <span class="sr-only">(current)</span></a>
             </li>
 
             <?php
         }else if($i == 1){
             ?>
-                <li class="page-item"><a class="page-link" href="/superadmin/phim?page=<?=$i?>"><?=$i?></a></li>
+                <li class="page-item"><a class="page-link" href="/superadmin/blog?page=<?=$i?>"><?=$i?></a></li>
             <?php
         }
         else if($i == ceil($phimCount / $limit)){
             ?>
-                            <li class="page-item"><a class="page-link" href="/superadmin/phim?page=<?=$i?>"><?=$i?></a></li>
+                            <li class="page-item"><a class="page-link" href="/superadmin/blog?page=<?=$i?>"><?=$i?></a></li>
             <?php
         }
         else if($page -1 == $i){
             ?>
                 <li class="page-item"><a class="page-link" href="">...</a></li>
 
-                <li class="page-item"><a class="page-link" href="/superadmin/phim?page=<?=$i?>"><?=$i?></a></li>
+                <li class="page-item"><a class="page-link" href="/superadmin/blog?page=<?=$i?>"><?=$i?></a></li>
 
             <?php
         }
         else if($page + 1 == $i){
             ?>
 
-                <li class="page-item"><a class="page-link" href="/superadmin/phim?page=<?=$i?>"><?=$i?></a></li>
+                <li class="page-item"><a class="page-link" href="/superadmin/blog?page=<?=$i?>"><?=$i?></a></li>
                 <li class="page-item"><a class="page-link" href="">...</a></li>
 
             <?php
@@ -100,7 +100,7 @@
         
         }?>
     <li class="page-item <?=($page >= ceil($phimCount / $limit))?"disabled":""?> ">
-      <a class="page-link" href="/superadmin/phim?page=<?=$page + 1?>">Next</a>
+      <a class="page-link" href="/superadmin/blog?page=<?=$page + 1?>">Next</a>
     </li>
   </ul>
 </nav>

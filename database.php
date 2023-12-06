@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "movie2";
+$dbname = "movie";
 // $servername = "web-mysql";
 // $username = "root";
 // $password = "admin";
