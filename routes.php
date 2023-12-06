@@ -127,6 +127,8 @@ if (strpos($path, "/superadmin/phim") !== false) {
     $sqlPhimCount = "SELECT COUNT(*)  FROM movie WHERE category_id like '%$id%' ";
     $phimCount = $conn->query($sqlPhimCount)->fetch_row()[0];
   } else if (strpos($path, "/blog") !== false) {
+    $limit = 8;
+
     $sqlPhim = "SELECT * FROM blog ORDER BY RAND()  LIMIT $limit ";
     $phim = $conn->query($sqlPhim);
 

@@ -90,7 +90,7 @@ require_once __DIR__ . '/header.php';
     foreach ($phim as  $val) {
     ?>
 
-        <div class="col-lg-3 col-md-3 col-sm-4 col-12  item p-0 pr-1">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12  item p-0 pr-1">
             <div class="card">
                 <div class="embed-responsive embed-responsive-16by9 position-relative">
                     <a class="visited" href="<?= $val['slug'] ?>"><img class="card-img-top" src="/<?= $val['image'] ?>" alt="母與子06-13直播實錄" data-src="<?= $val['image'] ?>" data-error="/imgdef/noimage.webp"></a>

@@ -84,7 +84,10 @@ require_once __DIR__ . '/header.php';
     <?= $video[2] ?>
 </div>
 
-
+<strong>
+    Bài viết liên quan
+</strong>
+<hr/>
 <div class="row pl-2 pr-2 mb-2" id="videos">
     <?php
     foreach ($phim as  $val) {
