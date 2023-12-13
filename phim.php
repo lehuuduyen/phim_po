@@ -123,19 +123,18 @@ require_once __DIR__ . '/header.php';
     </script>
      -->
 
-<form id="keywordForm" action="/">
-    <!-- <div class="input-group mb-1">
-                            <div class="input-group-prepend">
+<form id="keywordForm" action="">
+    <div class="input-group mb-1">
+                            <!-- <div class="input-group-prepend">
                                 <a class="btn btn-primary" href="https://www.pornlulu.com/category"><i
-                                        class="fa fa-th"></i> 分類</a> </div>
-                            <input type="text" list="keywords" class="form-control" placeholder="Search (搜索)" value=""
+                                        class="fa fa-th"></i> 分類</a> </div> -->
+                            <input type="text" list="keywords" class="form-control" placeholder="Search (搜索)" value="<?=(isset($_GET['q']))?$_GET['q']:''?>"
                                 name="q">
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i
                                         class="fa fa-search"></i> </button>
                             </div>
-                        </div> -->
-    <input type="hidden" name="category_id" value="263">
+                        </div>
     <script>
         window.addEventListener('load', function() {
             $("input[name='q']").change(function() {

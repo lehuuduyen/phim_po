@@ -11,7 +11,10 @@ if ($fullPath  == "/") {
 $path  =  $fullPath;
 
 if (isset($_GET['page'])) {
-  $path  = str_replace('?page=' . $_GET['page'], '', $fullPath);
+  $path  = str_replace('?page=' . $_GET['page'], '', $path);
+}
+if (isset($_GET['q'])) {
+  $path  = str_replace('?q=' . $_GET['q'], '', $path);
 }
 if (strpos($path, "/v/") !== false) {
   $sqlVideo = "SELECT url_movie,content,meta_description FROM movie WHERE url_movie_origin like '%$path%'LIMIT 1";
@@ -104,6 +107,9 @@ if (strpos($path, "/superadmin/phim") !== false) {
   $cate = $conn->query($sqlCat)->fetch_row();
 
   $phim = [];
+ 
+  
+  
   if ($cate) {
     $title = $cate[1];
 
@@ -111,14 +117,25 @@ if (strpos($path, "/superadmin/phim") !== false) {
     if (isset($_GET['page'])) {
       $page = $_GET['page'];
     }
-   
-    
     $offset =  ($page - 1) * $limit;
     $id = $cate[0];
-    $sqlPhim = "SELECT * FROM movie WHERE category_id = $id LIMIT $limit OFFSET $offset";
-    $phim = $conn->query($sqlPhim);
-    $sqlPhimCount = "SELECT COUNT(*)  FROM movie WHERE category_id = $id";
-    $phimCount = $conn->query($sqlPhimCount)->fetch_row()[0];
+    
+    if(isset($_GET['q'])){
+      $q = $_GET['q'];
+      $sqlPhim = "SELECT * FROM movie WHERE category_id = $id AND name like '%$q%' LIMIT $limit OFFSET $offset";
+      $phim = $conn->query($sqlPhim);
+      
+      
+      $sqlPhimCount = "SELECT COUNT(*)  FROM movie WHERE category_id = $id  AND name like '%$q%' ";
+      $phimCount = $conn->query($sqlPhimCount)->fetch_row()[0];
+      
+    }else{
+      $sqlPhim = "SELECT * FROM movie WHERE category_id = $id LIMIT $limit OFFSET $offset";
+      $phim = $conn->query($sqlPhim);
+      $sqlPhimCount = "SELECT COUNT(*)  FROM movie WHERE category_id = $id";
+      $phimCount = $conn->query($sqlPhimCount)->fetch_row()[0];
+    }
+  
   }else if (strpos($path, "/blog") !== false) {
     $limit = 8;
 
