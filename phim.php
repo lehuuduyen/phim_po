@@ -123,19 +123,16 @@ require_once __DIR__ . '/header.php';
     </script>
      -->
 
-<form id="keywordForm" action="/">
-    <!-- <div class="input-group mb-1">
-                            <div class="input-group-prepend">
+<form id="keywordForm" action="">
+    <div class="input-group mb-1">
+        <!-- <div class="input-group-prepend">
                                 <a class="btn btn-primary" href="https://www.pornlulu.com/category"><i
-                                        class="fa fa-th"></i> 分類</a> </div>
-                            <input type="text" list="keywords" class="form-control" placeholder="Search (搜索)" value=""
-                                name="q">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i
-                                        class="fa fa-search"></i> </button>
-                            </div>
-                        </div> -->
-    <input type="hidden" name="category_id" value="263">
+                                        class="fa fa-th"></i> 分類</a> </div> -->
+        <input type="text" list="keywords" class="form-control" placeholder="Search (搜索)" value="<?= (isset($_GET['q'])) ? $_GET['q'] : '' ?>" name="q">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-search"></i> </button>
+        </div>
+    </div>
     <script>
         window.addEventListener('load', function() {
             $("input[name='q']").change(function() {
@@ -151,31 +148,25 @@ require_once __DIR__ . '/header.php';
 </form>
 
 <div class="row no-gutters m-0">
-                        <div class="col-12 col-lg-6 col-xl-4 text-center" style="padding-right:2px;padding-bottom:3px">
-                            <a href="http://26se.cc" target="_blank"><img
-                                    src="https://www.pornlulu.com/images/friend/0/594.webp?1699605531" alt=""
-                                    style="max-width:100%"></a></div>
-                        <div class="col-12 col-lg-6 col-xl-4 text-center" style="padding-right:2px;padding-bottom:3px">
-                            <a href="https://88681368.app" target="_blank"><img
-                                    src="https://www.pornlulu.com/images/friend/0/582.webp?1696492719" alt=""
-                                    style="max-width:100%"></a></div>
-                        <div class="col-12 col-lg-6 col-xl-4 text-center" style="padding-right:2px;padding-bottom:3px">
-                            <a href="https://www.5454.xn--2scrj9c" target="_blank"><img
-                                    src="https://www.pornlulu.com/images/friend/0/589.webp?1697982245" alt=""
-                                    style="max-width:100%"></a></div>
-                        <div class="col-12 col-lg-6 col-xl-4 text-center" style="padding-right:2px;padding-bottom:3px">
-                            <a href="https://88oo77.com:13355/" target="_blank"><img
-                                    src="https://www.pornlulu.com/images/friend/0/544.webp?1698219390" alt=""
-                                    style="max-width:100%"></a></div>
-                        <div class="col-12 col-lg-6 col-xl-4 text-center" style="padding-right:2px;padding-bottom:3px">
-                            <a href="http://kyty8350.com/" target="_blank"><img
-                                    src="https://www.pornlulu.com/images/friend/0/568.webp?1693484426" alt=""
-                                    style="max-width:100%"></a></div>
-                        <div class="col-12 col-lg-6 col-xl-4 text-center" style="padding-right:2px;padding-bottom:3px">
-                            <a href="https://wdcwzhxtz2.2tzwdcwzhx.com/3434/tt79/index.html" target="_blank"><img
-                                    src="https://www.pornlulu.com/images/friend/0/561.webp?1695459388" alt=""
-                                    style="max-width:100%"></a></div>
-                    </div>
+    <div class="col-12 col-lg-6 col-xl-4 text-center" style="padding-right:2px;padding-bottom:3px">
+        <a href="http://26se.cc" target="_blank"><img src="https://www.pornlulu.com/images/friend/0/594.webp?1699605531" alt="" style="max-width:100%"></a>
+    </div>
+    <div class="col-12 col-lg-6 col-xl-4 text-center" style="padding-right:2px;padding-bottom:3px">
+        <a href="https://88681368.app" target="_blank"><img src="https://www.pornlulu.com/images/friend/0/582.webp?1696492719" alt="" style="max-width:100%"></a>
+    </div>
+    <div class="col-12 col-lg-6 col-xl-4 text-center" style="padding-right:2px;padding-bottom:3px">
+        <a href="https://www.5454.xn--2scrj9c" target="_blank"><img src="https://www.pornlulu.com/images/friend/0/589.webp?1697982245" alt="" style="max-width:100%"></a>
+    </div>
+    <div class="col-12 col-lg-6 col-xl-4 text-center" style="padding-right:2px;padding-bottom:3px">
+        <a href="https://88oo77.com:13355/" target="_blank"><img src="https://www.pornlulu.com/images/friend/0/544.webp?1698219390" alt="" style="max-width:100%"></a>
+    </div>
+    <div class="col-12 col-lg-6 col-xl-4 text-center" style="padding-right:2px;padding-bottom:3px">
+        <a href="http://kyty8350.com/" target="_blank"><img src="https://www.pornlulu.com/images/friend/0/568.webp?1693484426" alt="" style="max-width:100%"></a>
+    </div>
+    <div class="col-12 col-lg-6 col-xl-4 text-center" style="padding-right:2px;padding-bottom:3px">
+        <a href="https://wdcwzhxtz2.2tzwdcwzhx.com/3434/tt79/index.html" target="_blank"><img src="https://www.pornlulu.com/images/friend/0/561.webp?1695459388" alt="" style="max-width:100%"></a>
+    </div>
+</div>
 
 <div class="row pl-2 pr-2 mb-2" id="videos">
     <?php
