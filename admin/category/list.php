@@ -13,6 +13,9 @@
                  <thead>
                      <tr>
                          <th>Tên danh mục</th>
+                         <th>Meta Title</th>
+                         <th>Meta Keyword</th>
+                         <th>Meta Description</th>
                          <th>Link trang</th>
                          <th><button style="padding: 3px 20px;" data-toggle="modal" data-target="#exampleModalCreate" class="btn btn-success">Thêm</button></th>
                      </tr>
@@ -23,14 +26,20 @@
                                         foreach($categories as $category){
                                             $id=$category['id'];
                                             $name=$category['name'];
+                                            $meta_title=$category['meta_title'];
+                                            $meta_description=$category['meta_description'];
+                                            $meta_keyword=$category['meta_keyword'];
                                             $link=$category['link'];
                                             ?>
                      <tr>
-                         <td><?=$category['name']?></td>
+                         <td><a href="/superadmin/phim?category=<?=$category['name']?>&title="><?=$category['name']?></a></td>
+                         <td><?=$category['meta_title']?></td>
+                         <td><?=$category['meta_keyword']?></td>
+                         <td><?=$category['meta_description']?></td>
                          <td><?=$category['link']?></td>
                          <td>
                              <a data-toggle="modal" data-target="#exampleModal"
-                                 onclick="clickEditCate('<?=$name?>',<?=$id?>)" class="btn btn-info btn-circle">
+                                 onclick="clickEditCate('<?=$name?>','<?=$id?>','<?=$meta_title?>','<?=$meta_keyword?>','<?=urlencode($meta_description)?>')" class="btn btn-info btn-circle">
                                  <i class="fas fa-info-circle"></i>
 
                              </a>
@@ -63,7 +72,21 @@
                          <label for="exampleInputEmail1">Tên danh mục</label>
                          <input type="text" class="form-control"  name="name"  aria-describedby="emailHelp">
                      </div>
+                     <div class="form-group">
+                         <label for="exampleInputEmail1">Meta Title</label>
+                         <input type="text" class="form-control"  name="meta_title"  aria-describedby="emailHelp">
+                     </div>
+                     <div class="form-group">
+                         <label for="exampleInputEmail1">Meta Keyword</label>
+                         <input type="text" class="form-control"  name="meta_keyword"  aria-describedby="emailHelp">
+                     </div>
+                     <div class="form-group">
+                         <label for="exampleInputEmail1">Meta Description </label>
+                         <br />
+                         <textarea name="meta_description" cols="50" rows="5"></textarea>
+                     </div>
                  </div>
+                
                  <div class="modal-footer">
                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                      <button type="submit" class="btn btn-primary" name="create-category">Save changes</button>
@@ -90,7 +113,22 @@
                          <input type="text" class="form-control" id="name" name="name"  aria-describedby="emailHelp">
                          <input type="hidden" class="form-control" id="id" name="id" aria-describedby="emailHelp">
                      </div>
+                     <div class="form-group">
+                         <label for="exampleInputEmail1">Meta Title</label>
+                         <input type="text" class="form-control"  name="meta_title" id="meta_title"  aria-describedby="emailHelp">
+                     </div>
+                     <div class="form-group">
+                         <label for="exampleInputEmail1">Meta Keyword</label>
+                         <input type="text" class="form-control"  name="meta_keyword" id="meta_keyword"  aria-describedby="emailHelp">
+                     </div>
+                     <div class="form-group">
+                         <label for="exampleInputEmail1">Meta Description </label>
+                         <br />
+                         <textarea name="meta_description" id="meta_description" cols="50" rows="5"></textarea>
+                     </div>
                  </div>
+                
+                
                  <div class="modal-footer">
                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                      <button type="submit" class="btn btn-primary" name="edit-category">Save changes</button>
@@ -102,8 +140,27 @@
  </div>
 
  <script>
-     function clickEditCate(name, id) {
+     function clickEditCate(name, id,meta_title,meta_keyword,content) {
+        content = decodeURIComponent(content);
+        content = content.replaceAll("+", " ");
          $("#id").val(id)
          $("#name").val(name)
+         $("#meta_title").val(meta_title)
+         $("#meta_keyword").val(meta_keyword)
+         $("#meta_description").val(content)
      }
+     function clickEdit(name, id, meta_description, content, image, url_movie, category_id) {
+        content = decodeURIComponent(content);
+        content = content.replaceAll("+", " ");
+
+        $("#id").val(id)
+        $("#name").val(name)
+        $("#meta_description").val(meta_description)
+        $("#content_value").val(content)
+        $("#image").val(image)
+        $("#url_movie").val(url_movie)
+        $('#category_id').val(category_id.split(','));
+        $('#category_id').select2();
+
+    }
  </script>

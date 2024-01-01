@@ -16,7 +16,7 @@ if(isset($video[4])){
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1">
     
     <title><?=(!empty($title))?$title:"Pornlulu"?></title>
-    <meta name="keywords" content="">
+    <meta name="keywords" content="<?=(!empty($keyword))?$keyword:""?>">
     <meta name="description" content="<?=(!empty($video))?$video[3]:"最大的線上無碼情色A片網站，日本AV視頻。本站有百萬高清免費的日本AV視頻全部免費觀看。本站特點就是沒廣告，播放流暢，全部高清。"?>">
     <meta property="og:type" content="article" />
     <meta property="og:title" content="<?=(!empty($title))?$title:"Pornlulu"?>" />

@@ -4,8 +4,11 @@ $fullPath = $_SERVER['REQUEST_URI'];
 
 if (isset($_POST['create-category'])) {
     $name = $_POST['name'];
+    $meta_title = $_POST['meta_title'];
+    $meta_keyword = $_POST['meta_keyword'];
+    $meta_description = $_POST['meta_description'];
     $time = '/cat/' . time();
-    $sql = "INSERT INTO `category` (`name`,`link`) VALUES ('$name','$time')";
+    $sql = "INSERT INTO `category` (`name`,`link`,`meta_title`,`meta_keyword`,`meta_description`) VALUES ('$name','$time','$meta_title','$meta_keyword','$meta_description')";
 
     $categories = $conn->query($sql);
 
@@ -14,8 +17,10 @@ if (isset($_POST['create-category'])) {
 if (isset($_POST['edit-category'])) {
     $name = $_POST['name'];
     $id = $_POST['id'];
-
-    $sql = "UPDATE category SET name = '$name' WHERE id = $id";
+    $meta_title = $_POST['meta_title'];
+    $meta_keyword = $_POST['meta_keyword'];
+    $meta_description = $_POST['meta_description'];
+    $sql = "UPDATE category SET name = '$name' , meta_title = '$meta_title' ,meta_keyword = '$meta_keyword' ,meta_description = '$meta_description' WHERE id = $id";
 
     $categories = $conn->query($sql);
     header('Location: /superadmin');
@@ -28,7 +33,11 @@ if (isset($_POST['create-phim'])) {
     $content = $_POST['content'];
     $image = $_POST['image'];
     $url_movie = $_POST['url_movie'];
-    $categories = implode(',', $_POST['categories']);
+    $categories = '';
+
+    if($_POST['categories']){
+        $categories = implode(',', $_POST['categories']);
+    }
     $time = '/v/' . time();
 
     $sql = "INSERT INTO `movie` (`category_id`,`name`,`meta_description`,`content`,`image`,`url_movie`,`url_movie_origin`) VALUES ('$categories','$name','$meta_description','$content','$image','$url_movie','$time')";

@@ -72,7 +72,7 @@ if (strpos($path, "/blog/") !== false) {
 </script>";
   // header("Location: https://video.getlinktraffic.space/?url=".$video[0]);
 }
-$sql = "SELECT name, link,id FROM category";
+$sql = "SELECT * FROM category";
 $categories = $conn->query($sql);
 
 
@@ -86,11 +86,70 @@ if (strpos($path, "/superadmin/phim") !== false) {
   $offset =  ($page - 1) * $limit;
 
   $sqlPhim = "SELECT * FROM movie ORDER BY id DESC LIMIT $limit OFFSET $offset ";
+  // like '%$path%'
+  $phims = [];
+  $count =0;
 
+  if(isset($_GET['category'])){
+    $searchCate = $_GET['category'];
+    $searchTitle = $_GET['title'];
+    $sqlPhim = "SELECT * FROM movie  WHERE name like '%$searchTitle%'  ORDER BY id DESC LIMIT $limit OFFSET $offset ";
+    $sqlPhimCount = "SELECT * FROM movie WHERE name like '%$searchTitle%'";
+    $sqlPhimCount = $conn->query($sqlPhimCount);
+
+    foreach($sqlPhimCount as $key => $value){
+      $listCate = $value['category_id'];
+      $cate = "SELECT GROUP_CONCAT(name) AS category_name FROM category where id in ($listCate)";
+      $cate = $conn->query($cate);
+      $cateName= '';
+      if($cate){
+        $row = mysqli_fetch_assoc($cate);
+        $cateName = $row['category_name'];
+      }
+      if($searchCate){
+        $position = stripos($cateName, $searchCate);
+        if($position=== false){
+          continue;
+        }
+      }
+      $count++;
+    }
+  }else{
+    $count = "SELECT COUNT(*) FROM movie ";
+  }
   $phim = $conn->query($sqlPhim);
 
-  $sqlPhimCount = "SELECT COUNT(*) FROM movie ";
-  $phimCount = $conn->query($sqlPhimCount)->fetch_row()[0];
+  foreach($phim as $key => $value){
+    $listCate = $value['category_id'];
+    $cate = "SELECT GROUP_CONCAT(name) AS category_name FROM category where id in ($listCate)";
+    $cate = $conn->query($cate);
+   
+    
+    $cateName= '';
+
+    if($cate){
+      $row = mysqli_fetch_assoc($cate);
+      $cateName = $row['category_name'];
+    }
+    if($searchCate){
+      $position = stripos($cateName, $searchCate);
+      if($position=== false){
+        continue;
+      }
+    }
+    if($searchTitle){
+      $position = stripos($value['name'], $searchTitle);
+      if($position=== false){
+        continue;
+      }
+    }
+    $phims[$key]= $value;
+    $phims[$key]['category_name']= $row['category_name'];
+  }
+
+  
+  
+  $phimCount = $count;
 } else if (strpos($path, "/superadmin/blog") !== false) {
   $page = 1;
   $limit = 5;
@@ -108,14 +167,14 @@ if (strpos($path, "/superadmin/phim") !== false) {
   $phimCount = $conn->query($sqlPhimCount)->fetch_row()[0];
 } else {
 
-  $sqlCat = "SELECT id,name FROM category WHERE link like '%$path%'LIMIT 1";
-
+  $sqlCat = "SELECT * FROM category WHERE link like '%$path%'LIMIT 1";
+  
 
   $cate = $conn->query($sqlCat)->fetch_row();
 
   $phim = [];
   $phimCount = 0;
-
+  
   if ($cate) {
     $titleCate = $cate[1];
     $page = 1;
@@ -136,6 +195,11 @@ if (strpos($path, "/superadmin/phim") !== false) {
 
       $sqlPhimCount = "SELECT COUNT(*)  FROM movie WHERE category_id like '%$id%' ";
       $phimCount = $conn->query($sqlPhimCount)->fetch_row()[0];
+    }
+    if (strpos($path, "/cat/") !== false) {
+      $title = $cate[3];
+      $keyword = $cate[5];
+      $video[3] = $cate[4];
     }
   } else if (strpos($path, "/blog") !== false) {
     $limit = 8;
@@ -161,7 +225,9 @@ if (strpos($path, "/superadmin/phim") !== false) {
 
     // header("Location: https://video.getlinktraffic.space/?url=".$video[0]);
   } else {
-    $sqlCat = "SELECT id,name FROM category LIMIT 1";
+   
+    
+    $sqlCat = "SELECT * FROM category LIMIT 1";
     $cate = $conn->query($sqlCat)->fetch_row();
     $titleCate = $cate[1];
 

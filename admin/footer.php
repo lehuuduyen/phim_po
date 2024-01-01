@@ -50,6 +50,10 @@ https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-clipboard@40.1.0/src/dragdropbl
     let toolbar =  {
 }
     function clickEdit(name, id, meta_description, content, image, url_movie, category_id) {
+        content = decodeURIComponent(content);
+        content = content.replaceAll("+", " ");
+
+        console.log(`content`, content);
         $("#id").val(id)
         $("#name").val(name)
         $("#meta_description").val(meta_description)
@@ -82,25 +86,23 @@ https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-clipboard@40.1.0/src/dragdropbl
     $('.js-example-basic-multiple,#category_id').select2();
 </script>
 <script>
-    ClassicEditor.create(document.querySelector('#editor'),  {
+    let pathname = window.location.pathname // /account/search
+    if(pathname.search("superadmin/blog")){
+        ClassicEditor.create(document.querySelector('#editor'),  {
         ckfinder: {
             uploadUrl: '/superadmin/upload.php?command=QuickUpload&type=FilesUpload&responseType=json'
         },toolbar:toolbar
         
     })
-        .catch(error => {
-            console.error(error);
-        });
-
     ClassicEditor.create(document.querySelector('#editor2'),  {
         ckfinder: {
             uploadUrl: '/superadmin/upload.php?command=QuickUpload&type=FilesUpload&responseType=json'
         },toolbar:toolbar
         
     })
-        .catch(error => {
-            console.error(error);
-        });
+        
+    }
+    
 </script>
 </body>
 
