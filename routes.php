@@ -5,7 +5,8 @@ $http = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'];
 $fullPath = $_SERVER['REQUEST_URI'];
 $fullHttp = $http . $fullPath;
 $title = 'Pornlulu';
-
+$searchCate = '';
+$searchTitle = '';
 $path  =  $fullPath;
 
 if (isset($_GET['page'])) {
@@ -116,6 +117,7 @@ if (strpos($path, "/superadmin/phim") !== false) {
     }
   }else{
     $count = "SELECT COUNT(*) FROM movie ";
+    $count = $conn->query($count)->fetch_row()[0];
   }
   $phim = $conn->query($sqlPhim);
 
