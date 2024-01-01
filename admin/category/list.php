@@ -39,7 +39,7 @@
                          <td><?=$category['link']?></td>
                          <td>
                              <a data-toggle="modal" data-target="#exampleModal"
-                                 onclick="clickEditCate('<?=$name?>','<?=$id?>','<?=$meta_title?>','<?=$meta_keyword?>','<?=urlencode($meta_description)?>')" class="btn btn-info btn-circle">
+                                 onclick="clickEditCate('<?=$name?>','<?=$id?>','<?=$meta_title?>','<?=$meta_keyword?>',`<?=(empty($meta_description))?'':urlencode($meta_description)?>`)" class="btn btn-info btn-circle">
                                  <i class="fas fa-info-circle"></i>
 
                              </a>
