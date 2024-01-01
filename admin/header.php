@@ -127,7 +127,7 @@ if (strpos($fullPath, "/superadmin/blog/delete") !== false) {
     $categories = $conn->query($sql);
     header('Location: /superadmin/blog');
 }
-if($_GET['type']=='FilesUpload'){
+if(isset($_GET['type']) && $_GET['type']=='FilesUpload'){
     $imagetemp = $_FILES['upload']['tmp_name'];
     $newFile = 'style/img/' . time() . $_FILES['upload']['name'];
     $result = move_uploaded_file($imagetemp, $newFile);
