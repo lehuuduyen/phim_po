@@ -139,7 +139,6 @@
                              <input type="text" class="form-control" name="slug">
                          </div>
                      </div>
-                 </div>
                  <div class="form-group">
                      <label for="exampleInputEmail1">Link hình </label>
                      <input type="file" class="form-control" style="padding:0;height:32px"
@@ -165,6 +164,8 @@
                          <option value="0">Đóng</option>
                      </select>
                  </div>
+                 </div>
+                 
              </div>
              <div class="modal-footer">
                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

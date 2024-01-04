@@ -49,7 +49,7 @@ if (strpos($path, "/v/") !== false) {
 if (strpos($path, "/blog/") !== false) {
  
   $query = str_replace('/blog/','',$path);
-  $sqlVideo = "SELECT id,name,content,meta_description,image FROM blog WHERE slug like '%$query%' AND status = 1 LIMIT 1";
+  $sqlVideo = "SELECT id,name,content,meta_description,image FROM blog WHERE slug = '$query' AND status = 1 LIMIT 1";
 
   $video = $conn->query($sqlVideo)->fetch_row();
   $title = $video[1];

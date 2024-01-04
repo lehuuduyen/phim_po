@@ -73,6 +73,17 @@
                          <input type="text" class="form-control"  name="name"  aria-describedby="emailHelp">
                      </div>
                      <div class="form-group">
+                         <label for="exampleInputEmail1">Link trang </label>
+                         <div class="input-group mb-3">
+                             <div class="input-group-prepend">
+                                 <span class="input-group-text" id="basic-addon3"><?=$http?>/cat/</span>
+                             </div>
+                             <input type="text" class="form-control" id="slug" name="slug">
+                             <input type="hidden" class="form-control" id="slug_origin" name="slug_origin">
+
+                         </div>
+                     </div>
+                     <div class="form-group">
                          <label for="exampleInputEmail1">Meta Title</label>
                          <input type="text" class="form-control"  name="meta_title"  aria-describedby="emailHelp">
                      </div>
@@ -112,6 +123,17 @@
                          <label for="exampleInputEmail1">Tên danh mục</label>
                          <input type="text" class="form-control" id="name" name="name"  aria-describedby="emailHelp">
                          <input type="hidden" class="form-control" id="id" name="id" aria-describedby="emailHelp">
+                     </div>
+                     <div class="form-group">
+                         <label for="exampleInputEmail1">Link trang </label>
+                         <div class="input-group mb-3">
+                             <div class="input-group-prepend">
+                                 <span class="input-group-text" id="basic-addon3"><?=$http?>/blog/</span>
+                             </div>
+                             <input type="text" class="form-control" id="slug" name="slug">
+                             <input type="hidden" class="form-control" id="slug_origin" name="slug_origin">
+
+                         </div>
                      </div>
                      <div class="form-group">
                          <label for="exampleInputEmail1">Meta Title</label>

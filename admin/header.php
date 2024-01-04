@@ -50,6 +50,7 @@ if (isset($_POST['create-blog'])) {
     $meta_description = $_POST['meta_description'];
     $content = $_POST['content'];
     $status = $_POST['status'];
+    $slug = $_POST['slug'];
     $url_movie = $_POST['url_movie'];
     $image = "";
     $imagetemp = $_FILES['image']['tmp_name'];
@@ -58,9 +59,15 @@ if (isset($_POST['create-blog'])) {
     if ($result) {
         $image = $newFile;
     }
-    $time = '/blog/' . time();
 
-    $sql = "INSERT INTO `blog` (`status`,`name`,`meta_description`,`content`,`image`,`slug`) VALUES ('$status','$name','$meta_description','$content','$image','$time')";
+    $sqlcheckErr = "SELECT slug FROM blog WHERE slug = '$slug' LIMIT 1";
+    $checkErr = $conn->query($sqlcheckErr)->fetch_row();
+    if($checkErr){
+        header('Location: /superadmin/blog?message=1');
+        die;
+    }
+
+    $sql = "INSERT INTO `blog` (`status`,`name`,`meta_description`,`content`,`image`,`slug`) VALUES ('$status','$name','$meta_description','$content','$image','$slug')";
     $phimCreate = $conn->query($sql);
     
     header('Location: /superadmin/blog');
@@ -84,9 +91,9 @@ if (isset($_POST['edit-blog'])) {
     }
     $sqlSlug ='';
     if($slug_origin != $slug){
-        $sqlVideo = "SELECT slug FROM blog WHERE slug = '$slug' LIMIT 1";
-        $video = $conn->query($sqlVideo)->fetch_row();
-        if($video){
+        $sqlcheckErr = "SELECT slug FROM blog WHERE slug = '$slug' LIMIT 1";
+        $checkErr = $conn->query($sqlcheckErr)->fetch_row();
+        if($checkErr){
             
             header('Location: /superadmin/blog?message=1');
             die;
