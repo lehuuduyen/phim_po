@@ -1,6 +1,7 @@
 <?php
 $limit = 12;
 $http = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'];
+$messageError ='';
 
 $fullPath = $_SERVER['REQUEST_URI'];
 $fullHttp = $http . $fullPath;
@@ -46,7 +47,9 @@ if (strpos($path, "/v/") !== false) {
   // header("Location: https://video.getlinktraffic.space/?url=".$video[0]);
 }
 if (strpos($path, "/blog/") !== false) {
-  $sqlVideo = "SELECT id,name,content,meta_description,image FROM blog WHERE slug like '%$path%' AND status = 1 LIMIT 1";
+ 
+  $query = str_replace('/blog/','',$path);
+  $sqlVideo = "SELECT id,name,content,meta_description,image FROM blog WHERE slug like '%$query%' AND status = 1 LIMIT 1";
 
   $video = $conn->query($sqlVideo)->fetch_row();
   $title = $video[1];
@@ -237,3 +240,6 @@ if (strpos($path, "/superadmin/phim") !== false) {
     $phim = $conn->query($sqlPhim);
   }
 }
+
+
+    

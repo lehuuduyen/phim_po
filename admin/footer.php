@@ -65,11 +65,14 @@ https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-clipboard@40.1.0/src/dragdropbl
 
     }
 
-    function clickEditBlog(name, id, meta_description, content, image, url_movie) {
+    function clickEditBlog(name, id, meta_description, content, image,slug) {
 
         $("#id").val(id)
         $("#name").val(name)
         $("#meta_description").val(meta_description)
+        $("#slug").val(slug)
+        $("#slug_origin").val(slug)
+
         $("#thumbnail").attr('src', '/' + image)
 
         $("#exampleModal .ck-editor").remove()

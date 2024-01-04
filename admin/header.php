@@ -71,6 +71,9 @@ if (isset($_POST['edit-blog'])) {
     $content = $_POST['content'];
     $status = $_POST['status'];
     $url_movie = $_POST['url_movie'];
+    $slug = $_POST['slug'];
+    $slug_origin = $_POST['slug_origin'];
+
     $image = "";
     $id = $_POST['id'];
     $imagetemp = $_FILES['image']['tmp_name'];
@@ -79,16 +82,30 @@ if (isset($_POST['edit-blog'])) {
     if ($result) {
         $image = $newFile;
     }
+    $sqlSlug ='';
+    if($slug_origin != $slug){
+        $sqlVideo = "SELECT slug FROM blog WHERE slug = '$slug' LIMIT 1";
+        $video = $conn->query($sqlVideo)->fetch_row();
+        if($video){
+            
+            header('Location: /superadmin/blog?message=1');
+            die;
+        }else{
+            $sqlSlug = ", slug = '$slug' ";
+        
+        }
+    }
+  
+    
     if(!empty($image)){
-        $sql = "UPDATE blog SET status = '$status' , name = '$name' , meta_description = '$meta_description' , content = '$content' , image = '$image'  WHERE id = $id";
+        $sql = "UPDATE blog SET status = '$status' , name = '$name' , meta_description = '$meta_description' , content = '$content' , image = '$image' $sqlSlug  WHERE id = $id";
 
     }else{
-    $sql = "UPDATE blog SET status = '$status' , name = '$name' , meta_description = '$meta_description' , content = '$content'   WHERE id = $id";
+    $sql = "UPDATE blog SET status = '$status' , name = '$name' , meta_description = '$meta_description' , content = '$content' $sqlSlug  WHERE id = $id";
 
     }
 
     $phimCreate = $conn->query($sql);
-
     header('Location: /superadmin/blog');
 }
 
