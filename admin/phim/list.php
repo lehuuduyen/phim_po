@@ -21,6 +21,8 @@
                  </div>
              </form>
              <table class="table table-bordered" width="100%">
+                <span style="color:red"><?=(isset($_GET['message']))?"Slug bị trùng ":""?> </span>
+
                  <thead>
                      <tr style="text-align: center;">
                          <!-- <th style="width: 10%;">Tên danh mục</th> -->
@@ -56,11 +58,11 @@
                          <td style="width: 10%;"> <img width="50" height="50" src="<?=$value['image']?>"> </td>
                          <td style="width: 10%;"><a href="<?=$value['url_movie']?>"
                                  target="_blank"><?=$value['url_movie']?></a></td>
-                         <td style="width: 10%;"><a href="<?=$http.$value['url_movie_origin']?>"
-                                 target="_blank"><?=$http.$value['url_movie_origin']?></a></td>
+                         <td style="width: 10%;"><a href="<?=$http.'/movie/'.$value['url_movie_origin']?>"
+                                 target="_blank"><?=$http.'/movie/'.$value['url_movie_origin']?></a></td>
                          <td style="width: 10%;">
                              <a data-toggle="modal" data-target="#exampleModal"
-                                 onclick="clickEdit('<?=$name?>',<?=$id?>,`<?=$meta_description?>`,`<?=urlencode($content)?>`,`<?=$value['image']?>`,`<?=$value['url_movie']?>`,`<?=$value['category_id']?>`)"
+                                 onclick="clickEdit('<?=$name?>',<?=$id?>,`<?=$meta_description?>`,`<?=urlencode($content)?>`,`<?=$value['image']?>`,`<?=$value['url_movie']?>`,`<?=$value['category_id']?>`,`<?=$value['url_movie_origin']?>`)"
                                  class="btn btn-info btn-circle">
                                  <i class="fas fa-info-circle"></i>
 
@@ -153,6 +155,16 @@
                          <input type="text" class="form-control" name="name">
                      </div>
                      <div class="form-group">
+                         <label for="exampleInputEmail1">Link trang </label>
+                         <div class="input-group mb-3">
+                             <div class="input-group-prepend">
+                                 <span class="input-group-text" id="basic-addon3"><?=$http?>/movie/</span>
+                             </div>
+                             <input type="text" class="form-control"  name="slug">
+
+                         </div>
+                     </div>
+                     <div class="form-group">
                          <label for="exampleInputEmail1">Link hình </label>
                          <input type="text" class="form-control" name="image">
                      </div>
@@ -207,6 +219,17 @@
                      <div class="form-group">
                          <label for="exampleInputEmail1">Tên phim </label>
                          <input type="text" class="form-control" id="name" name="name">
+                     </div>
+                     <div class="form-group">
+                         <label for="exampleInputEmail1">Link trang </label>
+                         <div class="input-group mb-3">
+                             <div class="input-group-prepend">
+                                 <span class="input-group-text" id="basic-addon3"><?=$http?>/movie/</span>
+                             </div>
+                             <input type="text" class="form-control" id="slug" name="slug">
+                             <input type="hidden" class="form-control" id="slug_origin" name="slug_origin">
+
+                         </div>
                      </div>
                      <div class="form-group">
                          <label for="exampleInputEmail1">Link hình </label>

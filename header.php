@@ -83,7 +83,7 @@ if(isset($video[4])){
                           foreach($categories as $row) {
                                 ?>
                         <li class="nav-item"><a class="nav-link"
-                                href="<?=$http.$row['link']?>"><i
+                                href="<?=$http.'/cat/'.$row['link']?>"><i
                                     class="nav-icon fa fa-circle"></i>
                                 <p><?=$row['name']?></p>
                             </a>

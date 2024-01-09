@@ -176,12 +176,12 @@ require_once __DIR__ . '/header.php';
         <div class="col-lg-3 col-md-3 col-sm-4 col-12  item p-0 pr-1">
             <div class="card">
                 <div class="embed-responsive embed-responsive-16by9 position-relative">
-                    <a class="visited" href="<?= str_replace('https://www.pornlulu.com', '', $val['url_movie_origin']) ?>"><img class="card-img-top" src="<?= $val['image'] ?>" alt="母與子06-13直播實錄" data-src="<?= $val['image'] ?>" data-error="/imgdef/noimage.webp"></a>
+                    <a class="visited" href="<?=  $http.'/movie/'.$val['url_movie_origin']?>"><img class="card-img-top" src="<?= $val['image'] ?>" alt="<?=$val['name']?>" data-src="<?= $val['image'] ?>" data-error="/imgdef/noimage.webp"></a>
                     <!-- <div class="imagelabel imagelabel-bottom-right"><span class="badge badge-success"><i
                                                 class="fa fa-eye"></i> 314K</span></div> -->
                 </div>
                 <div class="card-body p-2">
-                    <div class="two-lines"><a class="visited" href="<?= str_replace('https://www.pornlulu.com', '', $val['url_movie_origin']) ?>"><?= $val['name'] ?></a></div>
+                    <div class="two-lines"><a class="visited" href="<?= $http.'/movie/'.$val['url_movie_origin'] ?>"><?= $val['name'] ?></a></div>
                 </div>
             </div>
         </div>

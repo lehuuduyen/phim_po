@@ -7,7 +7,7 @@ $p = "admin";
 require_once __DIR__.'/database.php';
 require_once __DIR__.'/routes.php';
 
-if (strpos($path, "/v/") !== false) {
+if (strpos($path, "/movie/") !== false) {
     require_once __DIR__.'/detail.php';
 }else if(strpos($path, "/superadmin") !== false){
     if(isset($_POST['login'])){

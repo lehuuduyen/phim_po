@@ -7,9 +7,16 @@ if (isset($_POST['create-category'])) {
     $meta_title = $_POST['meta_title'];
     $meta_keyword = $_POST['meta_keyword'];
     $meta_description = $_POST['meta_description'];
-    $time = '/cat/' . time();
-    $sql = "INSERT INTO `category` (`name`,`link`,`meta_title`,`meta_keyword`,`meta_description`) VALUES ('$name','$time','$meta_title','$meta_keyword','$meta_description')";
+    $slug = $_POST['slug'];
 
+    $sqlcheckErr = "SELECT link FROM category WHERE link = '$slug' LIMIT 1";
+    $checkErr = $conn->query($sqlcheckErr)->fetch_row();
+    if($checkErr){
+        header('Location: /superadmin?message=1');
+        die;
+    }
+
+    $sql = "INSERT INTO `category` (`name`,`link`,`meta_title`,`meta_keyword`,`meta_description`) VALUES ('$name','$slug','$meta_title','$meta_keyword','$meta_description')";
     $categories = $conn->query($sql);
 
     header('Location: /superadmin');
@@ -20,7 +27,22 @@ if (isset($_POST['edit-category'])) {
     $meta_title = $_POST['meta_title'];
     $meta_keyword = $_POST['meta_keyword'];
     $meta_description = $_POST['meta_description'];
-    $sql = "UPDATE category SET name = '$name' , meta_title = '$meta_title' ,meta_keyword = '$meta_keyword' ,meta_description = '$meta_description' WHERE id = $id";
+    $slug = $_POST['slug'];
+    $slug_origin = $_POST['slug_origin'];
+    $sqlSlug ='';
+    if($slug_origin != $slug){
+        $sqlcheckErr = "SELECT link FROM category WHERE link = '$slug' LIMIT 1";
+        $checkErr = $conn->query($sqlcheckErr)->fetch_row();
+        if($checkErr){
+            header('Location: /superadmin?message=1');
+            die;
+        }else{
+            $sqlSlug = ", link = '$slug' ";
+        
+        }
+    }
+
+    $sql = "UPDATE category SET name = '$name' , meta_title = '$meta_title' ,meta_keyword = '$meta_keyword' ,meta_description = '$meta_description' $sqlSlug WHERE id = $id";
 
     $categories = $conn->query($sql);
     header('Location: /superadmin');
@@ -34,13 +56,19 @@ if (isset($_POST['create-phim'])) {
     $image = $_POST['image'];
     $url_movie = $_POST['url_movie'];
     $categories = '';
+    $slug = $_POST['slug'];
 
+    $sqlcheckErr = "SELECT url_movie_origin FROM movie WHERE url_movie_origin = '$slug' LIMIT 1";
+    $checkErr = $conn->query($sqlcheckErr)->fetch_row();
+    if($checkErr){
+        header('Location: /superadmin/phim?message=1');
+        die;
+    }
     if($_POST['categories']){
         $categories = implode(',', $_POST['categories']);
     }
-    $time = '/v/' . time();
-
-    $sql = "INSERT INTO `movie` (`category_id`,`name`,`meta_description`,`content`,`image`,`url_movie`,`url_movie_origin`) VALUES ('$categories','$name','$meta_description','$content','$image','$url_movie','$time')";
+    
+    $sql = "INSERT INTO `movie` (`category_id`,`name`,`meta_description`,`content`,`image`,`url_movie`,`url_movie_origin`) VALUES ('$categories','$name','$meta_description','$content','$image','$url_movie','$slug')";
     $phimCreate = $conn->query($sql);
 
     header('Location: /superadmin/phim');
@@ -123,8 +151,23 @@ if (isset($_POST['edit-phim'])) {
     $image = $_POST['image'];
     $url_movie = $_POST['url_movie'];
     $categories = implode(',', $_POST['categories']);
+    $slug = $_POST['slug'];
+    $slug_origin = $_POST['slug_origin'];
+    $sqlSlug ='';
+    if($slug_origin != $slug){
+        $sqlcheckErr = "SELECT url_movie_origin FROM movie WHERE url_movie_origin = '$slug' LIMIT 1";
+        $checkErr = $conn->query($sqlcheckErr)->fetch_row();
+        if($checkErr){
+            
+            header('Location: /superadmin/phim?message=1');
+            die;
+        }else{
+            $sqlSlug = ", url_movie_origin = '$slug' ";
+        
+        }
+    }
     $id = $_POST['id'];
-    $sql = "UPDATE movie SET category_id = '$categories' , name = '$name' , meta_description = '$meta_description' , content = '$content' , image = '$image' , url_movie = '$url_movie' WHERE id = $id";
+    $sql = "UPDATE movie SET category_id = '$categories' , name = '$name' , meta_description = '$meta_description' , content = '$content' , image = '$image' , url_movie = '$url_movie' $sqlSlug WHERE id = $id";
 
     $phimEdit = $conn->query($sql);
     header('Location: /superadmin/phim');

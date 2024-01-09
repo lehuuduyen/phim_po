@@ -16,11 +16,14 @@ if (isset($_GET['page'])) {
 if (isset($_GET['q'])) {
   $path  = str_replace('?q=' . $_GET['q'], '', $path);
 }
-if (strpos($path, "/v/") !== false) {
-  $sqlVideo = "SELECT url_movie,name,content,meta_description,image FROM movie WHERE url_movie_origin like '%$path%'LIMIT 1";
+if (strpos($path, "/movie/") !== false) {
+  $query = str_replace('/movie/','',$path);
+
+  $sqlVideo = "SELECT url_movie,name,content,meta_description,image FROM movie WHERE url_movie_origin = '$query' LIMIT 1";
 
   $video = $conn->query($sqlVideo)->fetch_row();
-
+ 
+  
   $title = $video[1];
   $rand = rand(100, 10000);
   $fullImg = $http . '/' . $video[4];
@@ -78,6 +81,7 @@ if (strpos($path, "/blog/") !== false) {
 }
 $sql = "SELECT * FROM category";
 $categories = $conn->query($sql);
+
 
 
 if (strpos($path, "/superadmin/phim") !== false) {
@@ -232,10 +236,11 @@ if (strpos($path, "/superadmin/phim") !== false) {
   } else {
    
     
+    
     $sqlCat = "SELECT * FROM category LIMIT 1";
     $cate = $conn->query($sqlCat)->fetch_row();
     $titleCate = $cate[1];
-
+  
     $sqlPhim = "SELECT * FROM movie ORDER BY RAND()  LIMIT $limit ";
     $phim = $conn->query($sqlPhim);
   }

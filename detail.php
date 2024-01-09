@@ -69,7 +69,7 @@ require_once __DIR__.'/header.php';
                     </div> -->
 
                  
-                    <video id="video" class="video-js vjs-default-skin" preload="none" crossorigin="true"  controls>
+                    <video id="video" class="video-js vjs-default-skin" preload="none" muted="muted" crossorigin="true"  controls>
 
                     </video>
                    

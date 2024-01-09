@@ -49,11 +49,9 @@ https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-clipboard@40.1.0/src/dragdropbl
 <script>
     let toolbar =  {
 }
-    function clickEdit(name, id, meta_description, content, image, url_movie, category_id) {
+    function clickEdit(name, id, meta_description, content, image, url_movie, category_id,slug) {
         content = decodeURIComponent(content);
         content = content.replaceAll("+", " ");
-
-        console.log(`content`, content);
         $("#id").val(id)
         $("#name").val(name)
         $("#meta_description").val(meta_description)
@@ -62,7 +60,8 @@ https://cdn.jsdelivr.net/npm/@ckeditor/ckeditor5-clipboard@40.1.0/src/dragdropbl
         $("#url_movie").val(url_movie)
         $('#category_id').val(category_id.split(','));
         $('#category_id').select2();
-
+        $("#slug").val(slug)
+        $("#slug_origin").val(slug)
     }
 
     function clickEditBlog(name, id, meta_description, content, image,slug) {

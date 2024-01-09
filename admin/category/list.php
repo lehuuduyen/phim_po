@@ -9,6 +9,8 @@
      <div class="card-body">
         
          <div class="table-responsive">
+         <span style="color:red"><?=(isset($_GET['message']))?"Slug bị trùng ":""?> </span>
+
              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                  <thead>
                      <tr>
@@ -36,10 +38,11 @@
                          <td><?=$category['meta_title']?></td>
                          <td><?=$category['meta_keyword']?></td>
                          <td><?=$category['meta_description']?></td>
-                         <td><?=$category['link']?></td>
+                         <td><a href="<?=$http.'/cat/'.$category['link']?>"
+                                 target="_blank"><?=$http.'/cat/'.$category['link']?></a></td>
                          <td>
                              <a data-toggle="modal" data-target="#exampleModal"
-                                 onclick="clickEditCate('<?=$name?>','<?=$id?>','<?=$meta_title?>','<?=$meta_keyword?>',`<?=(empty($meta_description))?'':urlencode($meta_description)?>`)" class="btn btn-info btn-circle">
+                                 onclick="clickEditCate('<?=$name?>','<?=$id?>','<?=$meta_title?>','<?=$meta_keyword?>',`<?=(empty($meta_description))?'':urlencode($meta_description)?>`,`<?=$category['link']?>`)" class="btn btn-info btn-circle">
                                  <i class="fas fa-info-circle"></i>
 
                              </a>
@@ -78,7 +81,7 @@
                              <div class="input-group-prepend">
                                  <span class="input-group-text" id="basic-addon3"><?=$http?>/cat/</span>
                              </div>
-                             <input type="text" class="form-control" id="slug" name="slug">
+                             <input type="text" class="form-control"  name="slug">
                              <input type="hidden" class="form-control" id="slug_origin" name="slug_origin">
 
                          </div>
@@ -128,7 +131,7 @@
                          <label for="exampleInputEmail1">Link trang </label>
                          <div class="input-group mb-3">
                              <div class="input-group-prepend">
-                                 <span class="input-group-text" id="basic-addon3"><?=$http?>/blog/</span>
+                                 <span class="input-group-text" id="basic-addon3"><?=$http?>/cat/</span>
                              </div>
                              <input type="text" class="form-control" id="slug" name="slug">
                              <input type="hidden" class="form-control" id="slug_origin" name="slug_origin">
@@ -162,7 +165,7 @@
  </div>
 
  <script>
-     function clickEditCate(name, id,meta_title,meta_keyword,content) {
+     function clickEditCate(name, id,meta_title,meta_keyword,content,slug) {
         content = decodeURIComponent(content);
         content = content.replaceAll("+", " ");
          $("#id").val(id)
@@ -170,6 +173,8 @@
          $("#meta_title").val(meta_title)
          $("#meta_keyword").val(meta_keyword)
          $("#meta_description").val(content)
+         $("#slug").val(slug)
+         $("#slug_origin").val(slug)
      }
      function clickEdit(name, id, meta_description, content, image, url_movie, category_id) {
         content = decodeURIComponent(content);
